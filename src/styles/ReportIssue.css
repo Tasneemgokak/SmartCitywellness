@@ -1,0 +1,53 @@
+/* src/styles/ReportIssue.css */
+.report-issue-container {
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  p {
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+  }
+  
+  button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  .page-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: white;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .report-issue-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  
