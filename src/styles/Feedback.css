@@ -1,0 +1,104 @@
+:root {
+  --main-bg: #e0f2e9;
+  --form-bg: #ffffff;
+  --text-color: #2f3e46;
+  --accent-color: #7fb77e;
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  --radius: 20px;
+  --button-gradient: linear-gradient(45deg, #fbc02d, #f57c00);
+}
+
+body {
+  background-color: var(--main-bg);
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.feedback-container {
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 40px;
+  border-radius: var(--radius);
+  background: var(--form-bg);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.feedback-container::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  left: -80px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, #c2f0d1, #a5d6a7);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.4;
+}
+
+.feedback-container h2 {
+  text-align: center;
+  color: var(--text-color);
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+.feedback-message {
+  text-align: center;
+  font-weight: bold;
+  color: #f44336;
+  margin-bottom: 15px;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.feedback-form label {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.feedback-form input[type="number"],
+.feedback-form input[type="file"],
+.feedback-form textarea {
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  font-size: 15px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s;
+}
+
+.feedback-form textarea {
+  resize: horizontal;
+  min-height: 50px;
+}
+
+.feedback-form input:focus,
+.feedback-form textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.feedback-form button {
+  background: var(--button-gradient);
+  color: white;
+  padding: 14px;
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.feedback-form button:hover {
+  transform: scale(1.03);
+}

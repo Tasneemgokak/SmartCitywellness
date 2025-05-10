@@ -5,6 +5,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import GoogleButton from "../components/GoogleButton";
 import "../styles/Auth.css";
 
+
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -16,7 +17,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     console.log(credentials); // Replace with real login logic
-    navigate("/dashboard"); // Navigate to dashboard after login
+    navigate("/home"); // Navigate to home page after login
   };
 
   return (

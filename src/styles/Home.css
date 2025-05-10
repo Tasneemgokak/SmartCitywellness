@@ -1,0 +1,65 @@
+
+.home-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .home-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .home-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .home-button {
+    padding: 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .home-button:hover {
+    transform: translateY(-3px);
+  }
+  
+  .report-button {
+    background-color: #ff6b6b;
+    color: white;
+  }
+  
+  .dashboard-button {
+    background-color: #4ecdc4;
+    color: white;
+  }
+  
+  .feedback-button {
+    background-color: #ffbe76;
+    color: white;
+  }
+  
+  .logout-button {
+    padding: 0.5rem 1rem;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .loading {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+  }
+  .complaint-button {
+  background-color: #a29bfe; /* Soft purple look */
+  color: white;
+}

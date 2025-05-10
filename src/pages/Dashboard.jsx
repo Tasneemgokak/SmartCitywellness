@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext/AuthContext';
 
 const Dashboard = () => {
   const { user } = useAuth();
+  const [feedbacks, setFeedbacks] = useState([]);
+
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("feedbacks")) || [];
+    setFeedbacks(stored);
+  }, []);
 
   return (
     <div className="dashboard-main">
@@ -37,6 +43,27 @@ const Dashboard = () => {
             </div>
           </>
         )}
+             <div className="feedback-section">
+          <h2>User Feedbacks</h2>
+          {feedbacks.map((fb, index) => (
+            <div key={index} className="feedback-card">
+              <p><strong>{fb.name}</strong> ({fb.email})</p>
+              <p>Rating: {fb.rating} ⭐</p>
+              <p>Message: {fb.message}</p>
+              <p>Date: {fb.date}</p>
+              <div className="feedback-images">
+                <div>
+                  <p>Before:</p>
+                  <img src={fb.beforeImage} alt="Before" width={100} />
+                </div>
+                <div>
+                  <p>After:</p>
+                  <img src={fb.afterImage} alt="After" width={100} />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

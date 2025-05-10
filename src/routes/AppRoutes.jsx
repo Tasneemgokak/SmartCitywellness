@@ -1,29 +1,40 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import SidebarLayout from '../components/SidebarLayout';
-import Dashboard from '../pages/Dashboard';
-import ReportIssue from '../pages/ReportIssue';
-import History from '../pages/History';
-import GreenCombo from '../pages/GreenCombo';
-import Login from '../pages/Login';
-import Signup from '../pages/Signup';
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import Dashboard from "../pages/Dashboard";
+import ReportIssue from "../pages/ReportIssue";
+import History from "../pages/History";
+import Login from "../pages/Login";
+import Signup from "../pages/Signup";
+import Feedback from "../pages/Feedback";
+import Complaint from "../pages/Complaint";
+import Home from "../pages/Home";
+
+
+
+const PrivateRoute = ({ children }) => {
+  const { currentUser } = useAuth();
+  return currentUser ? children : <Navigate to="/login" />;
+};
 
 const AppRoutes = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        
-        {/* All protected routes */}
-        <Route element={<SidebarLayout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/report" element={<ReportIssue />} />
-          <Route path="/history" element={<History />} />
-          <Route path="/green-combo" element={<GreenCombo />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      
+      {/* Protected Routes */}
+      <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
+      <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
+      <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+      <Route path="/report" element={<PrivateRoute><ReportIssue /></PrivateRoute>} />
+      <Route path="/history" element={<PrivateRoute><History /></PrivateRoute>} />
+      <Route path="/feedback" element={<PrivateRoute><Feedback /></PrivateRoute>} />
+      <Route path="/complaint" element={<PrivateRoute><Complaint /></PrivateRoute>} />
+
+      <Route path="*" element={<Navigate to="/home" replace />} />
+
+    </Routes>
   );
 };
 
