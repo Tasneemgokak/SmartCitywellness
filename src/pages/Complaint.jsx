@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/complaint.css';
+import '../styles/Complaint.css';
 
 
 const Complaint = () => {

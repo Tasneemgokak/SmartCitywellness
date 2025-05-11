@@ -30,7 +30,7 @@ const AppRoutes = () => {
       <Route path="/history" element={<PrivateRoute><History /></PrivateRoute>} />
       <Route path="/feedback" element={<PrivateRoute><Feedback /></PrivateRoute>} />
       <Route path="*" element={<Navigate to="/home" replace />} />
-      <Route path="/complaint" element={<PrivateRoute><complaint /></PrivateRoute>} />
+      <Route path="/complaint" element={<PrivateRoute><Complaint /></PrivateRoute>} />
 
     </Routes>
   );

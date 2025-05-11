@@ -16,10 +16,9 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
       // Redirect to home if user is logged in and on auth pages
       if (user && (window.location.pathname === '/login' || window.location.pathname === '/signup')) {
-  navigate("/home");
-}
-
-    });
+      navigate("/home");
+    }
+});
 
     return () => unsubscribe();
   }, [navigate]);

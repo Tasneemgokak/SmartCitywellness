@@ -14,7 +14,7 @@ const GoogleButton = () => {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       alert(`Welcome, ${user.displayName}`);
-      navigate("/dashboard"); // ✅ redirect after login
+      navigate("/home"); // ✅ redirect after login
     } catch (error) {
       console.error("Error during sign-in:", error);
       alert("Google Sign-In failed. Please try again.");
