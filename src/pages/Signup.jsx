@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import GoogleButton from "../components/GoogleButton";
@@ -96,6 +96,13 @@ const handleSubmit = async (e) => {
             {loading ? "Creating Account..." : "Sign Up"}
           </button>
         </form>
+        
+        <div className="auth-switch-text">
+          Already have an account? &nbsp;
+            <Link to="/login" className="my-link-style">
+              Login In
+            </Link>
+        </div>
         <GoogleButton />
       </div>
     </div>

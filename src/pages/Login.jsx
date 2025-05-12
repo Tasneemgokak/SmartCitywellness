@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import GoogleButton from "../components/GoogleButton";
 import "../styles/Auth.css";
 
 const Login = () => {
@@ -65,9 +66,12 @@ const Login = () => {
           </button>
         </form>
         <div className="auth-switch-text">
-          Don't have an account?
-          <Link to="/signup">Sign up</Link>
+          Don't have an account? &nbsp;
+            <Link to="/signup" className="my-link-style">
+              Sign up
+            </Link>
         </div>
+        <GoogleButton />
       </div>
     </div>
   );
