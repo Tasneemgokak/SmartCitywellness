@@ -39,8 +39,8 @@
   
   .eye-icon {
     position: absolute;
-    top: 50%;
-    right: 1rem;
+    top: 40%;
+    right: 0rem;
     transform: translateY(-50%);
     cursor: pointer;
     color: #ccc;
