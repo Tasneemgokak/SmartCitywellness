@@ -3,11 +3,11 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 
-const AuthContext = createContext();
+const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
       // Redirect to home if user is logged in and on auth pages
       if (user && (window.location.pathname === '/login' || window.location.pathname === '/signup')) {
-      navigate("/home");
+        navigate("/home");
     }
 });
 
@@ -32,8 +32,8 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const value = {
-    currentUser,
+  const value = { 
+    currentUser, 
     logout,
     loading
   };

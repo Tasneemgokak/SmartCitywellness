@@ -14,7 +14,7 @@ import Home from "../pages/Home";
 
 const PrivateRoute = ({ children }) => {
   const { currentUser } = useAuth();
-  return currentUser ? children : <Navigate to="/login" />;
+  return currentUser ? children : <Navigate to="/home" />;
 };
 
 const AppRoutes = () => {
