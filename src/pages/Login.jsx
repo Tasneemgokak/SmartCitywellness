@@ -1,10 +1,8 @@
-// src/pages/Login.jsx
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import GoogleButton from "../components/GoogleButton";
 import "../styles/Auth.css";
-
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,8 +14,21 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(credentials); // Replace with real login logic
-    navigate("/home"); // Navigate to home page after login
+    const { email, password } = credentials;
+
+  const auth = getAuth();
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log('Logged in as:', user.email);
+      navigate('/home'); // Redirect to home page after successful login
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error('Error during login:', errorCode, errorMessage);
+    });
   };
 
   return (
@@ -53,7 +64,10 @@ const Login = () => {
             Log In
           </button>
         </form>
-        <GoogleButton />
+        <div className="auth-switch-text">
+          Don't have an account?
+          <Link to="/signup">Sign up</Link>
+        </div>
       </div>
     </div>
   );
