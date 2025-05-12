@@ -21,7 +21,7 @@ const Signup = () => {
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
- // ... (your existing imports remain the same)
+ 
 
 const handleSubmit = async (e) => {
   e.preventDefault();
