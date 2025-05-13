@@ -67,7 +67,7 @@ const Login = () => {
         </form>
         <div className="auth-switch-text">
           Don't have an account? &nbsp;
-            <Link to="/signup" className="my-link-style">
+            <Link to="/signup" className="link-style">
               Sign up
             </Link>
         </div>
