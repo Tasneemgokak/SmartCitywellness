@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import Feedback from "./pages/Feedback";
 import Home from "./pages/Home";
 import Complaint from "./pages/Complaint";
+import Preview from './pages/Preview'; 
 
 
 const PrivateRoute = ({ children }) => {
@@ -29,9 +30,11 @@ const AppRoutes = () => {
       <Route path="/report" element={<PrivateRoute><ReportIssue /></PrivateRoute>} />
       <Route path="/history" element={<PrivateRoute><History /></PrivateRoute>} />
       <Route path="/feedback" element={<PrivateRoute><Feedback /></PrivateRoute>} />
-      <Route path="*" element={<Navigate to="/home" replace />} />
       <Route path="/complaint" element={<PrivateRoute><Complaint /></PrivateRoute>} />
-
+      <Route path="/preview" element={<PrivateRoute><Preview /></PrivateRoute>} />
+      
+      {/* Redirect to login if no match */}
+      <Route path="*" element={<Navigate to="/home" replace />} />
     </Routes>
   );
 };

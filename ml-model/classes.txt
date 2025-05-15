@@ -1,0 +1,14 @@
+O
+biological
+brown-glass
+cardboard
+clothes
+ewaste
+glass
+green-glass
+metal
+paper
+plastic
+shoes
+trash
+white-glass

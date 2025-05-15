@@ -1,52 +1,56 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { FaImage, FaMapMarkerAlt, FaTimes, FaMicrophone, FaStop, FaPlay, FaPause, FaTrash } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import '../styles/ReportIssue.css';
 
 const ReportIssue = () => {
   const { currentUser } = useAuth();
   const [issue, setIssue] = useState('');
   const [image, setImage] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
   const [location, setLocation] = useState(null);
   const [error, setError] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [audioURL, setAudioURL] = useState('');
   const [isPlaying, setIsPlaying] = useState(false);
-  
+
   const fileInputRef = useRef(null);
   const audioRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
+  const navigate = useNavigate();
 
-  // Cleanup on unmount
   useEffect(() => {
     return () => {
       if (mediaRecorderRef.current?.state === 'recording') {
         stopRecording();
       }
+      if (audioURL) URL.revokeObjectURL(audioURL);
+      if (image) URL.revokeObjectURL(image);
     };
-  }, []);
+  }, [audioURL, image]);
 
   const startRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       mediaRecorderRef.current = new MediaRecorder(stream);
       audioChunksRef.current = [];
-      
+
       mediaRecorderRef.current.ondataavailable = (event) => {
         audioChunksRef.current.push(event.data);
       };
-      
+
       mediaRecorderRef.current.onstop = () => {
         const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/wav' });
         const audioUrl = URL.createObjectURL(audioBlob);
         setAudioURL(audioUrl);
       };
-      
+
       mediaRecorderRef.current.start();
       setIsRecording(true);
     } catch (err) {
-      setError('Microphone access denied');
+      setError('Please allow microphone access to record voice.');
       setIsRecording(false);
     }
   };
@@ -60,11 +64,7 @@ const ReportIssue = () => {
   };
 
   const toggleRecording = () => {
-    if (isRecording) {
-      stopRecording();
-    } else {
-      startRecording();
-    }
+    isRecording ? stopRecording() : startRecording();
   };
 
   const togglePlayback = () => {
@@ -89,6 +89,7 @@ const ReportIssue = () => {
     const file = e.target.files[0];
     if (file) {
       setImage(URL.createObjectURL(file));
+      setImageFile(file);
     }
   };
 
@@ -101,34 +102,65 @@ const ReportIssue = () => {
             lng: position.coords.longitude
           });
         },
-        (err) => setError('Location access denied')
+        () => setError('Location access denied')
       );
     } else {
       setError('Geolocation not supported');
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!issue && !audioURL) {
       setError('Please describe the issue or record a voice message');
       return;
     }
 
-    console.log({
-      user: currentUser.displayName || currentUser.email,
-      issue,
-      image,
-      location,
-      audioURL
-    });
-    alert('Issue reported successfully!');
-    resetForm();
+    if (!image || !imageFile) {
+      setError('Please upload an image for prediction.');
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append('file', imageFile);
+
+      const response = await fetch('http://127.0.0.1:5000/predict', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.prediction) {
+        throw new Error('Failed to get valid prediction');
+      }
+
+      const previewImageURL = URL.createObjectURL(imageFile);
+
+      navigate("/preview", {
+        state: {
+          issue,
+          image: previewImageURL,
+          prediction: data.prediction,
+          user: currentUser.displayName || currentUser.email
+        }
+      });
+
+      alert('Issue reported successfully!');
+      resetForm();
+
+    } catch (err) {
+      console.error(err);
+      setError('Something went wrong. Could not submit report.');
+    }
   };
 
   const resetForm = () => {
     setIssue('');
     setImage(null);
+    setImageFile(null);
     setLocation(null);
     setAudioURL('');
     setError('');
@@ -144,9 +176,9 @@ const ReportIssue = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="report-form">
-        {/* Description Section */}
         <div className="form-section">
-          <h3 className="section-title">Issue Details</h3>
+          <h3 className="section-title">&nbsp;Issue Details</h3>
+          <br />
           <textarea
             value={issue}
             onChange={(e) => setIssue(e.target.value)}
@@ -155,116 +187,63 @@ const ReportIssue = () => {
           />
         </div>
 
-        {/* Media Section */}
         <div className="form-section">
           <h3 className="section-title">Attachments</h3>
-          
-          {/* Image Upload */}
+
           <div className="media-option">
-            <button
-              type="button"
-              className="media-btn image-btn"
-              onClick={() => fileInputRef.current.click()}
-            >
+            <button type="button" className="media-btn image-btn" onClick={() => fileInputRef.current.click()}>
               <FaImage className="media-icon" />
               <span>Upload Image</span>
             </button>
-            <input
-              type="file"
-              ref={fileInputRef}
-              onChange={handleImageUpload}
-              accept="image/*"
-              hidden
-            />
+            <input type="file" ref={fileInputRef} onChange={handleImageUpload} accept="image/*" hidden />
           </div>
 
-          {/* Image Preview */}
           {image && (
             <div className="attachment-preview">
               <div className="image-preview">
                 <img src={image} alt="Uploaded content" className="uploaded-image" />
-                <button
-                  type="button"
-                  className="remove-btn"
-                  onClick={() => setImage(null)}
-                >
+                <button type="button" className="remove-btn" onClick={() => setImage(null)}>
                   <FaTimes />
                 </button>
               </div>
             </div>
           )}
 
-          {/* Voice Recording */}
           <div className="media-option">
-            <button
-              type="button"
-              className={`media-btn voice-btn ${isRecording ? 'recording' : ''}`}
-              onClick={toggleRecording}
-            >
-              {isRecording ? (
-                <FaStop className="media-icon" />
-              ) : (
-                <FaMicrophone className="media-icon" />
-              )}
+            <button type="button" className={`media-btn voice-btn ${isRecording ? 'recording' : ''}`} onClick={toggleRecording}>
+              {isRecording ? <FaStop className="media-icon" /> : <FaMicrophone className="media-icon" />}
               <span>{isRecording ? 'Stop Recording' : 'Record Voice'}</span>
             </button>
           </div>
 
-          {/* Voice Message Preview */}
           {audioURL && (
             <div className="attachment-preview voice-preview">
               <div className="voice-message">
                 <div className="voice-controls">
-                  <button
-                    type="button"
-                    className={`play-btn ${isPlaying ? 'playing' : ''}`}
-                    onClick={togglePlayback}
-                  >
+                  <button type="button" className={`play-btn ${isPlaying ? 'playing' : ''}`} onClick={togglePlayback}>
                     {isPlaying ? <FaPause /> : <FaPlay />}
                   </button>
                   <div className="voice-wave">
                     {Array.from({ length: 20 }).map((_, i) => (
-                      <div
-                        key={i}
-                        className="wave-bar"
-                        style={{
-                          height: `${Math.random() * 60 + 20}%`,
-                          animationDelay: `${i * 0.05}s`
-                        }}
-                      />
+                      <div key={i} className="wave-bar" style={{ height: `${Math.random() * 60 + 20}%`, animationDelay: `${i * 0.05}s` }} />
                     ))}
                   </div>
-                  <button
-                    type="button"
-                    className="delete-btn"
-                    onClick={deleteVoiceMessage}
-                  >
+                  <button type="button" className="delete-btn" onClick={deleteVoiceMessage}>
                     <FaTrash />
                   </button>
                 </div>
-                <audio
-                  ref={audioRef}
-                  src={audioURL}
-                  onEnded={() => setIsPlaying(false)}
-                  hidden
-                />
+                <audio ref={audioRef} src={audioURL} onEnded={() => setIsPlaying(false)} hidden />
               </div>
             </div>
           )}
 
-          {/* Location */}
           <div className="media-option">
-            <button
-              type="button"
-              className="media-btn location-btn"
-              onClick={getLocation}
-            >
+            <button type="button" className="media-btn location-btn" onClick={getLocation}>
               <FaMapMarkerAlt className="media-icon" />
               <span>Add Location</span>
             </button>
           </div>
 
-          {/* Location Preview */}
           {location && (
             <div className="attachment-preview location-preview">
               <div className="location-info">
@@ -273,11 +252,7 @@ const ReportIssue = () => {
                   <span className="lat">Lat: {location.lat.toFixed(4)}</span>
                   <span className="lng">Lng: {location.lng.toFixed(4)}</span>
                 </div>
-                <button
-                  type="button"
-                  className="remove-btn"
-                  onClick={() => setLocation(null)}
-                >
+                <button type="button" className="remove-btn" onClick={() => setLocation(null)}>
                   <FaTimes />
                 </button>
               </div>
@@ -285,17 +260,11 @@ const ReportIssue = () => {
           )}
         </div>
 
-        {/* Error Message */}
         {error && <div className="error-message">{error}</div>}
 
-        {/* Form Actions */}
         <div className="form-actions">
-          <button type="button" className="cancel-btn" onClick={resetForm}>
-            Clear All
-          </button>
-          <button type="submit" className="submit-btn">
-            Submit Report
-          </button>
+          <button type="button" className="cancel-btn" onClick={resetForm}>Clear All</button>
+          <button type="submit" className="submit-btn">Submit Report</button>
         </div>
       </form>
     </div>

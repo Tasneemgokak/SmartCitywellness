@@ -9,7 +9,7 @@ import Signup from "../pages/Signup";
 import Feedback from "../pages/Feedback";
 import Complaint from "../pages/Complaint";
 import Home from "../pages/Home";
-
+import Preview from '../pages/Preview';
 
 
 const PrivateRoute = ({ children }) => {
@@ -31,6 +31,10 @@ const AppRoutes = () => {
       <Route path="/history" element={<PrivateRoute><History /></PrivateRoute>} />
       <Route path="/feedback" element={<PrivateRoute><Feedback /></PrivateRoute>} />
       <Route path="/complaint" element={<PrivateRoute><Complaint /></PrivateRoute>} />
+      {/* <Route path="/preview" element={<PrivateRoute><Preview /></PrivateRoute>} /> */}
+
+      
+      {/* Redirect to home if no match */}
 
       <Route path="*" element={<Navigate to="/home" replace />} />
 

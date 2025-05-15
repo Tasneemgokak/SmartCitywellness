@@ -1,0 +1,55 @@
+.preview-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  background: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.preview-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.preview-section {
+  margin-bottom: 18px;
+}
+
+.preview-section strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #444;
+}
+
+.preview-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+.prediction {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2b8a3e;
+}
+
+.back-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 16px;
+  background-color: #2b8a3e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.back-btn:hover {
+  background-color: #237031;
+}

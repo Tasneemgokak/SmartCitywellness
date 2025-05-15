@@ -24,9 +24,9 @@ const Home = () => {
         <button onClick={() => navigate("/report")} className="home-button report-button">
           Report Issue
         </button>
-        <button onClick={() => navigate("/dashboard")} className="home-button dashboard-button">
+        {/* <button onClick={() => navigate("/dashboard")} className="home-button dashboard-button">
           Dashboard
-        </button>
+        </button> */}
         <button onClick={() => navigate("/feedback")} className="home-button feedback-button">
           Feedback
         </button>
