@@ -7,7 +7,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 # ==== Config 
 IMG_SIZE = 128
 BATCH_SIZE = 32
-EPOCHS = 1
+EPOCHS = 10
 DATA_DIR = "../DATASET/TRAIN"
 
 
