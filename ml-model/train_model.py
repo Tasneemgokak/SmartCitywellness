@@ -7,13 +7,13 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 # ==== Config 
 IMG_SIZE = 128
 BATCH_SIZE = 32
-EPOCHS = 10
-DATA_DIR = "../DATASET/TRAIN"
+EPOCHS = 5
+DATA_DIR = "../DATASET"
 
 
 # ==== Prepare Data
 class_names = sorted(os.listdir(DATA_DIR))
-print("Classes:", class_names)
+print("Classes:", class_names, len(class_names))
 
 datagen = ImageDataGenerator(
     rescale=1./255,
@@ -45,7 +45,7 @@ model = Sequential([
     Flatten(),
     Dense(128, activation='relu'),
     Dropout(0.4),
-    Dense(9, activation='softmax')  # Use len(class_names) for dynamic class count or 9 is for fixed
+    Dense(len(class_names), activation='softmax')  # Use len(class_names) for dynamic class count or [number] it's for fixed
 ])
 
 
@@ -57,6 +57,7 @@ model.fit(train_data, validation_data=val_data, epochs=EPOCHS)
 
 # ==== Save Model & Classes 
 model.save("waste_classifier_model.h5")
+model.save("waste_classifier_model.keras")
 
 with open("classes.txt", "w") as f:
     for label in class_names:
