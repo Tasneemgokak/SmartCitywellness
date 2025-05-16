@@ -7,4 +7,4 @@ DATA_DIR = "../DATASET"
 class_names = sorted(os.listdir(DATA_DIR))
 
 
-print(len(class_names)-1)  # or however you get your class names
+print(len(class_names))  # or however you get your class names
