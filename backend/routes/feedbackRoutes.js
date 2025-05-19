@@ -1,18 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const multer = require('multer');
-const path = require('path');
 const { createFeedback } = require('../controllers/feedbackController');
 
-const storage = multer.diskStorage({
-  destination: 'uploads/',
-  filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname))
-});
-const upload = multer({ storage });
+// Handle JSON-based feedback (no file uploads)
+router.post('/feedback', createFeedback);
 
-router.post('/feedback', upload.fields([
-  { name: 'imageBefore', maxCount: 1 },
-  { name: 'imageAfter', maxCount: 1 }
-]), createFeedback);
+router.get('/', (req, res) => {
+  res.send('Feedback endpoint working. Use POST to submit feedback.');
+});
 
 module.exports = router;
