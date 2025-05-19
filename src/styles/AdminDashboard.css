@@ -1,0 +1,66 @@
+.admin-dashboard {
+  padding: 2rem;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.logout-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #e60000;
+}
+
+.report-list {
+  list-style: none;
+  padding: 0;
+}
+
+.report-card {
+  background: white;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-left: 6px solid #4caf50;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.report-image img {
+  width: 250px;
+  margin-top: 10px;
+  border-radius: 4px;
+}
+
+.no-reports {
+  font-style: italic;
+  color: gray;
+}
+.forgot-password {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+.forgot-password:hover {
+  color: #0056b3;
+}

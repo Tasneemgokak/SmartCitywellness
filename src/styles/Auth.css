@@ -93,3 +93,46 @@
   color: orange;
   text-decoration: none; /* remove underline */
 }
+.toggle-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.toggle-btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #eee;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.toggle-btn.active {
+  background-color: #009095;
+  color: white;
+}
+.back-btn {
+  margin-top: 2rem;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  background-color: #ebc387; /* sky blue */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: fit-content;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background 0.3s;
+}
+
+.back-btn:hover {
+  background-color: #e0975b;
+}
+
+
+
