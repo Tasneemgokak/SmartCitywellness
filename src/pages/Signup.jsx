@@ -99,7 +99,7 @@ const handleSubmit = async (e) => {
         
         <div className="auth-switch-text">
           Already have an account? &nbsp;
-            <Link to="/login" className="my-link-style">
+            <Link to="/login" className="link-style">
               Login In
             </Link>
         </div>

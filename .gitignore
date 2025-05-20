@@ -27,3 +27,4 @@ yarn-error.log*
 virtual/
 DATASET/
 uploads/
+.firebase/
