@@ -28,3 +28,5 @@ virtual/
 DATASET/
 uploads/
 .firebase/
+Admin/serviceAccountKey.json
+Admin/setAdminClaims.js
