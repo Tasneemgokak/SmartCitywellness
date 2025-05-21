@@ -5,6 +5,7 @@ require('./config/db');
 const reportRoutes = require('./routes/reportRoute');
 const feedbackRoutes = require('./routes/feedbackRoutes');
 const complaintRoutes = require('./routes/complaintRoute');
+const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use('/uploads', express.static('uploads'));
 app.use('/api/reports', reportRoutes);      
 app.use('/api/feedbacks', feedbackRoutes); 
 app.use('/api/complaints', complaintRoutes); 
+app.use('/api/admin', adminRoutes);
 
 // Check if server is running
 app.get('/', (req, res) => {

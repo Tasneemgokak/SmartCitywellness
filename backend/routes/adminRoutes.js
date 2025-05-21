@@ -1,10 +1,11 @@
 // backend/routes/adminRoutes.js
 const express = require("express");
 const router = express.Router();
-const admin = require("firebase-admin");
+// const admin = require("../Admin/setAdminClaim");
 const Feedback = require("../models/Feedback");
 const Complaint = require("../models/Complaint");
 const Report = require("../models/Report");
+const admin = require("../config/firebaseAdmin");
 
 // Middleware to check admin
 const checkAdmin = async (req, res, next) => {
@@ -31,11 +32,15 @@ router.get("/feedback", checkAdmin, async (req, res) => {
 });
 
 // Get feedback by UID
-router.get("/feedback/:uid", checkAdmin, async (req, res) => {
-  const fb = await Feedback.findOne({ uid: req.params.uid });
-  if (!fb) return res.status(404).json({ error: "Not found" });
+router.get("/feedback/:feedbackId", checkAdmin, async (req, res) => {
+  const fb = await Feedback.findOne({ feedbackId: req.params.feedbackId });
+ if (!fb) {
+    console.log("Feedback not found for ID:", req.params.feedbackId);
+    return res.status(404).json({ error: "Not found" });
+  }
   res.json(fb);
 });
+
 
 // Get all complaints
 router.get("/complaints", checkAdmin, async (req, res) => {
@@ -44,8 +49,8 @@ router.get("/complaints", checkAdmin, async (req, res) => {
 });
 
 // Get complaint by UID
-router.get("/complaints/:uid", checkAdmin, async (req, res) => {
-  const comp = await Complaint.findOne({ uid: req.params.uid });
+router.get("/complaints/:complaintId", checkAdmin, async (req, res) => {
+  const comp = await Complaint.findOne({ complaintId: req.params.complaintId });
   if (!comp) return res.status(404).json({ error: "Not found" });
   res.json(comp);
 });
@@ -57,10 +62,11 @@ router.get("/reports", checkAdmin, async (req, res) => {
 });
 
 // Get report by UID
-router.get("/reports/:uid", checkAdmin, async (req, res) => {
-  const rep = await Report.findOne({ uid: req.params.uid });
+router.get("/reports/:reportId", checkAdmin, async (req, res) => {
+  const rep = await Report.findOne({ reportId: req.params.reportId });
   if (!rep) return res.status(404).json({ error: "Not found" });
   res.json(rep);
 });
+
 
 module.exports = router;

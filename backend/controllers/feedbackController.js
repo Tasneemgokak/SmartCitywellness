@@ -17,7 +17,7 @@ exports.createFeedback = async (req, res) => {
       message,
       date: date || new Date().toISOString(),
       beforeImage,
-      afterImage
+      afterImage,
     });
 
     await newFeedback.save();
@@ -26,5 +26,17 @@ exports.createFeedback = async (req, res) => {
   } catch (err) {
     console.error('Feedback error:', err.message);
     res.status(500).json({ error: 'Failed to submit feedback' });
+  }
+};
+
+exports.getFeedbackById = async (req, res) => {
+  try {
+    const feedback = await Feedback.findOne({ feedbackId: req.params.id });
+    if (!feedback) {
+      return res.status(404).json({ error: 'Feedback not found' });
+    }
+    res.json(feedback);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
   }
 };

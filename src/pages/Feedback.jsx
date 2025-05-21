@@ -28,23 +28,38 @@ const Feedback = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const feedbackData = {
-      name: user?.displayName || 'Anonymous',
-      email: user?.email || 'Guest',
-      rating,
-      message,
-      date: new Date().toISOString(),
-      beforeImage,
-      afterImage,
-    };
-
-    console.log("Submitting Feedback:", feedbackData);
-
-    // TODO: Send this to your backend API
-    setSubmitted(true);
+  const feedbackData = {
+    name: user?.displayName,
+    email: user?.email,
+    rating,
+    message,
+    date: new Date().toISOString(),
+    beforeImage,
+    afterImage,
   };
+
+  console.log("Submitting Feedback:", feedbackData);
+
+  try {
+    const response = await fetch('/api/feedbacks/feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(feedbackData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
+
+    setSubmitted(true);  // only after success
+  } catch (error) {
+    console.error('Failed to submit feedback:', error);
+    alert('Failed to submit feedback. Please try again.');
+  }
+};
+
 
   return (
     <div className="feedback-container">

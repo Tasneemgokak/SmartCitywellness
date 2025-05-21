@@ -28,4 +28,4 @@ virtual/
 DATASET/
 uploads/
 .firebase/
-Admin/serviceAccountKey.json
+backend/Admin/serviceAccountKey.json
