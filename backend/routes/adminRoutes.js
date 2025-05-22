@@ -1,7 +1,7 @@
 // backend/routes/adminRoutes.js
 const express = require("express");
 const router = express.Router();
-// const admin = require("../Admin/setAdminClaim");
+const admin = require("../Admin/setAdminClaim");
 const Feedback = require("../models/Feedback");
 const Complaint = require("../models/Complaint");
 const Report = require("../models/Report");

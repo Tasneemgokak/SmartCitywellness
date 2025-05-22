@@ -21,15 +21,45 @@ const PrivateRoute = ({ children }) => {
   return currentUser ? children : <Navigate to="/login" />;
 };
 
+const AdminPrivateRoute = ({ children }) => {
+  const { currentUser } = useAuth();
+  const [isAdmin, setIsAdmin] = React.useState(null);
+
+  React.useEffect(() => {
+    const checkAdmin = async () => {
+      if (!currentUser) {
+        setIsAdmin(false);
+        return;
+      }
+      try {
+        const tokenResult = await currentUser.getIdTokenResult();
+        setIsAdmin(!!tokenResult.claims.admin);
+      } catch (err) {
+        console.error("Token error:", err);
+        setIsAdmin(false);
+      }
+    };
+
+    checkAdmin();
+  }, [currentUser]);
+
+  if (isAdmin === null) return <div>Checking permissions...</div>;
+
+  return isAdmin ? children : <Navigate to="/admin-login" />;
+};
+
+
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/admin-login" element={<AdminLogin />} />
+
       
-      
-      {/* Protected Routes */}
+                                      {/* Protected Routes */}
+
+      {/* Public Routes */}
       <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
       <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
       <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
@@ -38,13 +68,20 @@ const AppRoutes = () => {
       <Route path="/feedback" element={<PrivateRoute><Feedback /></PrivateRoute>} />
       <Route path="/complaint" element={<PrivateRoute><Complaint /></PrivateRoute>} />
       <Route path="/preview" element={<PrivateRoute><Preview /></PrivateRoute>} />
-      <Route path="/admin-dashboard" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} /> 
-      {/* Admin Protected Routes */}
+      
+      
+                                      {/* Admin Protected Routes */}
+
+      {/* <Route path="/admin-dashboard" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} /> 
       <Route path="/admin/feedback/:feedbackId" element={<PrivateRoute><FeedbackDetail /></PrivateRoute>} />
       <Route path="/admin/reports/:reportId" element={<PrivateRoute><ReportDetail /></PrivateRoute>} />
-      <Route path="/admin/complaints/:complaintId" element={<PrivateRoute><ComplaintDetail /></PrivateRoute>} />
-      
-      
+      <Route path="/admin/complaints/:complaintId" element={<PrivateRoute><ComplaintDetail /></PrivateRoute>} /> */}
+
+      <Route path="/admin-dashboard" element={ <AdminPrivateRoute><AdminDashboard /></AdminPrivateRoute> } />
+      <Route path="/admin/feedback/:feedbackId" element={<AdminPrivateRoute><FeedbackDetail /></AdminPrivateRoute>} />
+      <Route path="/admin/reports/:reportId" element={ <AdminPrivateRoute><ReportDetail /></AdminPrivateRoute> } />
+      <Route path="/admin/complaints/:complaintId" element={ <AdminPrivateRoute><ComplaintDetail /></AdminPrivateRoute> } />
+
       {/* Redirect to login if no match */}
       <Route path="*" element={<Navigate to="/home" replace />} />
     </Routes>

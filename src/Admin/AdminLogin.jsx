@@ -29,6 +29,7 @@ const handleLogin = async (e) => {
       navigate("/admin-dashboard");
     } else {
       setError("Access denied. You are not an admin.");
+      navigate("/admin-login");
     }
   } catch (err) {
     console.error("Login Error:", err.code, err.message);
