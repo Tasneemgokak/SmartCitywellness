@@ -1,18 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const multer = require('multer');
-const path = require('path');
 const { createFeedback } = require('../controllers/feedbackController');
 
-const storage = multer.diskStorage({
-  destination: 'uploads/',
-  filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname))
-});
-const upload = multer({ storage });
+// POST feedback (no auth needed)
+router.post('/', createFeedback);
 
-router.post('/feedback', upload.fields([
-  { name: 'imageBefore', maxCount: 1 },
-  { name: 'imageAfter', maxCount: 1 }
-]), createFeedback);
+router.get('/', (req, res) => {
+  res.send('Feedback endpoint working. Use POST /api/feedbacks to submit feedback.');
+});
 
 module.exports = router;

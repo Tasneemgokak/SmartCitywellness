@@ -23,6 +23,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) =>
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -79,6 +80,7 @@ const Login = () => {
   return (
     <div className="auth-background">
       <div className="auth-box">
+<<<<<<< HEAD
         <h2>{showAdminForm ? "Admin Login" : "User Login"}</h2>
         {error && <div className="error-message">{error}</div>}
         {message && <div className="success-message">{message}</div>}
@@ -100,6 +102,19 @@ const Login = () => {
 
         {!showAdminForm ? (
           <form onSubmit={handleUserLogin}>
+=======
+        <h2>User Login</h2>
+        <form onSubmit={handleLogin}>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={credentials.email}
+            onChange={handleChange}
+            required
+          />
+          <div className="input-wrapper">
+>>>>>>> origin/MD2
             <input
               type="email"
               name="email"
@@ -178,6 +193,15 @@ const Login = () => {
         )}
 
         <GoogleButton />
+
+        {/* ✅ Admin Login Button */}
+        <button
+          className="admin-login-btn"
+          onClick={() => navigate("/admin-login")}
+        >
+          Admin Login
+        </button>
+
       </div>
     </div>
   );

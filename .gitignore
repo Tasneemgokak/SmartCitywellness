@@ -23,6 +23,10 @@ yarn-debug.log*
 yarn-error.log*
 
 
-# Dataset
+# Internal files: 
 virtual/
 DATASET/
+uploads/
+.firebase/
+backend/Admin/serviceAccountKey.json
+backend/Admin/node_modules

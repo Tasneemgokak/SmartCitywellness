@@ -133,12 +133,20 @@ const Signup = () => {
             {loading ? "Creating Account..." : "Sign Up"}
           </button>
         </form>
+<<<<<<< HEAD
 
         {!isAdminSignup && (
           <div className="auth-switch-text">
             Already have an account? &nbsp;
             <Link to="/login" className="my-link-style">
               Log In
+=======
+        
+        <div className="auth-switch-text">
+          Already have an account? &nbsp;
+            <Link to="/login" className="link-style">
+              Login In
+>>>>>>> origin/MD2
             </Link>
           </div>
         )}

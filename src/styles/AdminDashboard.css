@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .admin-dashboard {
   padding: 2rem;
   background-color: #f4f4f4;
@@ -63,4 +64,170 @@
 }
 .forgot-password:hover {
   color: #0056b3;
+=======
+/* ================= Base ================= */
+.admin-dashboard {
+  padding: 2.5rem;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(120deg, #1f1f1f, #2d2d2d);
+  color: #f3f3f3;
+  min-height: 100vh;
+  animation: fadeIn 0.6s ease-in-out;
+  max-width: 1200px;
+  margin: auto;
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= Header ================= */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 2.5rem;
+  transition: all 0.3s ease;
+}
+
+.admin-header h2 {
+  margin: 0;
+  font-size: 2.2rem;
+  background: linear-gradient(to right, #00e3ae, #4facfe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes textPulse {
+  0% {
+    text-shadow: 0 0 8px rgba(79, 172, 254, 0.2);
+  }
+  100% {
+    text-shadow: 0 0 20px rgba(79, 172, 254, 0.5);
+  }
+}
+
+/* Logout Button */
+.logout-btn {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 75, 43, 0.3);
+}
+
+.logout-btn:hover {
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  transform: scale(1.05);
+}
+
+/* ================= Sections ================= */
+.admin-section {
+  margin-bottom: 2rem;
+  padding: 2rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  animation: slideUp 0.7s ease forwards;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-section h3 {
+  margin-bottom: 1.2rem;
+  font-size: 1.5rem;
+  color: #aefeff;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+/* ================= List Styling ================= */
+.admin-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-section li {
+  background-color: rgba(255, 255, 255, 0.07);
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 15px rgba(0, 255, 255, 0.08);
+  animation: fadeInList 0.5s ease both;
+}
+
+@keyframes fadeInList {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.admin-section li:hover {
+  background-color: rgba(0, 255, 255, 0.05);
+  transform: scale(1.02);
+  box-shadow: 0 6px 18px rgba(0, 255, 255, 0.15);
+}
+
+/* UID clickable */
+.uid {
+  color: #00c3ff;
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.uid:hover {
+  color: #ffffff;
+  text-shadow: 0 0 6px #00c3ff;
+}
+
+/* ================= Loading / Access Message ================= */
+.admin-msg {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 3rem;
+  color: #ccc;
+  animation: fadeIn 1s ease;
+>>>>>>> origin/MD2
 }

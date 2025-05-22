@@ -123,14 +123,18 @@ const ReportIssue = () => {
     }
 
     try {
-      const formData = new FormData();
-      formData.append('file', imageFile);
+    const formData = new FormData();
+    formData.append('image', imageFile);
+    formData.append('description', issue);
+    formData.append('userId', currentUser.displayName || currentUser.email);
+    if (location) {
+      formData.append('location', JSON.stringify(location));
+    }
 
-      const response = await fetch('http://127.0.0.1:5000/predict', {
-        method: 'POST',
-        body: formData,
-      });
-
+    const response = await fetch('http://localhost:5000/api/reports/report', {
+      method: 'POST',
+      body: formData,
+    });
       const data = await response.json();
 
       if (!response.ok || !data.prediction) {
