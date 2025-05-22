@@ -12,7 +12,6 @@ import Complaint from "./pages/Complaint";
 import Preview from './pages/Preview'; 
 import AdminLogin from "./Admin/AdminLogin";
 import AdminDashboard from './Admin/AdminDashboard';
-// import AdminDetailView from './Admin/AdminDetailView';
 import FeedbackDetail from './Admin/FeedbackDetail';
 import ReportDetail from './Admin/ReportDetail';
 import ComplaintDetail from './Admin/ComplaintDetail';
@@ -40,10 +39,10 @@ const AppRoutes = () => {
       <Route path="/complaint" element={<PrivateRoute><Complaint /></PrivateRoute>} />
       <Route path="/preview" element={<PrivateRoute><Preview /></PrivateRoute>} />
       <Route path="/admin-dashboard" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} /> 
-      {/* <Route path="/admin-detail/:type/:uid" element={<PrivateRoute><AdminDetailView /></PrivateRoute>} />   */}
-      <Route path="/admin/feedback/:id" element={<PrivateRoute><FeedbackDetail /></PrivateRoute>} />
-      <Route path="/admin/reports/:id" element={<PrivateRoute><ReportDetail /></PrivateRoute>} />
-      <Route path="/admin/complaints/:id" element={<PrivateRoute><ComplaintDetail /></PrivateRoute>} />
+      {/* Admin Protected Routes */}
+      <Route path="/admin/feedback/:feedbackId" element={<PrivateRoute><FeedbackDetail /></PrivateRoute>} />
+      <Route path="/admin/reports/:reportId" element={<PrivateRoute><ReportDetail /></PrivateRoute>} />
+      <Route path="/admin/complaints/:complaintId" element={<PrivateRoute><ComplaintDetail /></PrivateRoute>} />
       
       
       {/* Redirect to login if no match */}

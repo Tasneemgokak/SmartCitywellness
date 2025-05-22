@@ -19,13 +19,13 @@ const FeedbackDetail = () => {
       }
 
       const token = await user.getIdToken();
-      console.log("ID Token:", token);
+      
       try {
         const res = await axios.get(`http://localhost:5000/api/admin/feedback/${feedbackId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setFeedback(res.data);
-        console.log("Fetched feedback:", res.data);
+        
 
       } catch (error) {
         console.error("Fetch error:", error.response?.data || error.message);
