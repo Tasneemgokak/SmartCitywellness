@@ -1,65 +1,108 @@
-
+/* Home Container */
 .home-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
-  
-  .home-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-  }
-  
-  .home-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-  }
-  
-  .home-button {
-    padding: 1rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-  
-  .home-button:hover {
-    transform: translateY(-3px);
-  }
-  
-  .report-button {
-    background-color: #ff6b6b;
-    color: white;
-  }
-  
-  .dashboard-button {
-    background-color: #4ecdc4;
-    color: white;
-  }
-  
-  .feedback-button {
-    background-color: #ffbe76;
-    color: white;
-  }
-  
-  .logout-button {
-    padding: 0.5rem 1rem;
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .loading {
-    text-align: center;
-    padding: 2rem;
-    font-size: 1.2rem;
-  }
-  .complaint-button {
-  background-color: #a29bfe; /* Soft purple look */
-  color: white;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header Layout */
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+/* Responsive Grid for Buttons */
+.home-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Shared Button Base */
+.home-button {
+  padding: 1.1rem;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.35s ease;
+  transform: scale(1);
+  letter-spacing: 0.5px;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Base Hover Neon Glow */
+.home-button:hover {
+  transform: translateY(-4px) scale(1.03);
+}
+
+/* Report Button */
+.report-button {
+  background-color: #ff6b6b;
+}
+
+.report-button:hover {
+  box-shadow: 0 0 12px #ff6b6b, 0 0 22px #ff6b6b, 0 0 34px #ff6b6b;
+}
+
+/* Dashboard Button */
+.dashboard-button {
+  background-color: #4ecdc4;
+}
+
+.dashboard-button:hover {
+  box-shadow: 0 0 12px #4ecdc4, 0 0 22px #4ecdc4, 0 0 34px #4ecdc4;
+}
+
+/* Feedback Button */
+.feedback-button {
+  background-color: #ffbe76;
+}
+
+.feedback-button:hover {
+  box-shadow: 0 0 12px #ffbe76, 0 0 22px #ffbe76, 0 0 34px #ffbe76;
+}
+
+/* Complaint Button */
+.complaint-button {
+  background-color: #a29bfe;
+}
+
+.complaint-button:hover {
+  box-shadow: 0 0 12px #a29bfe, 0 0 22px #a29bfe, 0 0 34px #a29bfe;
+}
+
+/* Logout Button (Separate style) */
+.logout-button {
+  padding: 0.6rem 1.2rem;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  color: #333;
+}
+
+.logout-button:hover {
+  background-color: #f1f1f1;
+  border-color: #bbb;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+/* Loading Text */
+.loading {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.25rem;
+  color: #555;
 }

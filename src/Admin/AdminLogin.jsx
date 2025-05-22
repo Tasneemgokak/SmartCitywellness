@@ -96,6 +96,12 @@ const handleLogin = async (e) => {
               Sign up
             </Link>
         </div> */}
+         <button
+          className="admin-login-btn"
+          onClick={() => navigate("/login")}
+        >
+          User Login
+        </button>
       </div>
     </div>
   );
