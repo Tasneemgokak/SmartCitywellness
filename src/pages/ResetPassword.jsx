@@ -1,15 +1,15 @@
-// src/pages/ResetAdminPassword.jsx
+// ResetPassword.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, query, where, getDocs, updateDoc } from "firebase/firestore";
-import { db } from "../firebase";
+import { getAuth, fetchSignInMethodsForEmail, updatePassword, signInWithEmailAndPassword } from "firebase/auth";
 import "../styles/Auth.css";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const handleReset = async (e) => {
@@ -17,23 +17,37 @@ const ResetPassword = () => {
     setError("");
     setMessage("");
 
-    try {
-      const q = query(collection(db, "admin"), where("email", "==", email));
-      const snapshot = await getDocs(q);
+    if (newPassword !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
 
-      if (snapshot.empty) {
-        setError("❌ Admin email not found.");
+    const auth = getAuth();
+    try {
+      // Step 1: Check if user exists
+      const methods = await fetchSignInMethodsForEmail(auth, email);
+      if (methods.length === 0) {
+        setError("Admin account not found.");
         return;
       }
 
-      const adminDoc = snapshot.docs[0];
-      await updateDoc(adminDoc.ref, { password: newPassword });
+      // Step 2: Login temporarily to allow password update
+      const tempPassword = prompt("Please enter your current admin password to verify.");
+      if (!tempPassword) {
+        setError("Current password is required to reset.");
+        return;
+      }
 
-      setMessage("✅ Password updated successfully!");
-      setTimeout(() => navigate("/"), 2000); // Redirect to login
+      const userCredential = await signInWithEmailAndPassword(auth, email, tempPassword);
+      const user = userCredential.user;
+
+      // Step 3: Update password
+      await updatePassword(user, newPassword);
+      setMessage("✅ Password has been successfully updated.");
+      setTimeout(() => navigate("/login"), 2000);
     } catch (err) {
-      console.error(err);
-      setError("❌ Failed to update password.");
+      console.error("Reset error:", err.message);
+      setError("❌ " + err.message);
     }
   };
 
@@ -58,13 +72,14 @@ const ResetPassword = () => {
             onChange={(e) => setNewPassword(e.target.value)}
             required
           />
-          <button className="btn" type="submit">
-            Update Password
-          </button>
-          <button type="button" className="back-btn" onClick={() => navigate("/")}>
-  ← Back
-</button>
-
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+          <button className="btn" type="submit">Reset Password</button>
         </form>
       </div>
     </div>
