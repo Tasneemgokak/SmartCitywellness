@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const { createFeedback } = require('../controllers/feedbackController');
 
-// Handle JSON-based feedback (no file uploads)
-router.post('/feedback', createFeedback);
+// POST feedback (no auth needed)
+router.post('/', createFeedback);
 
 router.get('/', (req, res) => {
-  res.send('Feedback endpoint working. Use POST to submit feedback.');
+  res.send('Feedback endpoint working. Use POST /api/feedbacks to submit feedback.');
 });
 
 module.exports = router;

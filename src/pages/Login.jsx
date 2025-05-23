@@ -9,6 +9,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) =>
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -35,7 +36,7 @@ const Login = () => {
   return (
     <div className="auth-background">
       <div className="auth-box">
-        <h2>Login</h2>
+        <h2>User Login</h2>
         <form onSubmit={handleLogin}>
           <input
             type="email"
@@ -72,6 +73,15 @@ const Login = () => {
             </Link>
         </div>
         <GoogleButton />
+
+        {/* ✅ Admin Login Button */}
+        <button
+          className="admin-login-btn"
+          onClick={() => navigate("/admin-login")}
+        >
+          Admin Login
+        </button>
+
       </div>
     </div>
   );

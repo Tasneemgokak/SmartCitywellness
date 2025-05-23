@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import '../styles/Feedback.css';
+import { FaStar } from 'react-icons/fa'; // ⭐ You'll need react-icons
 
 const Feedback = () => {
-  const { user } = useAuth();
-  const [rating, setRating] = useState('');
+  const { currentUser } = useAuth();
+  const [rating, setRating] = useState(0);
+  const [hover, setHover] = useState(null);
   const [message, setMessage] = useState('');
   const [beforeImage, setBeforeImage] = useState(null);
   const [afterImage, setAfterImage] = useState(null);
   const [submitted, setSubmitted] = useState(false);
 
-  // Convert file to Base64
   const convertToBase64 = (file, callback) => {
     const reader = new FileReader();
     reader.onloadend = () => callback(reader.result);
@@ -28,23 +29,40 @@ const Feedback = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+
+  if (!currentUser) {
+    alert("You must be logged in to submit feedback.");
+    return;
+  }
 
     const feedbackData = {
-      name: user?.displayName || 'Anonymous',
-      email: user?.email || 'Guest',
-      rating,
-      message,
-      date: new Date().toISOString(),
-      beforeImage,
-      afterImage,
-    };
-
-    console.log("Submitting Feedback:", feedbackData);
-
-    // TODO: Send this to your backend API
-    setSubmitted(true);
+    name: currentUser?.displayName,
+    email: currentUser?.email,
+    rating,
+    message,
+    date: new Date().toISOString(),
+    beforeImage,
+    afterImage,
   };
+  try {
+    const response = await fetch('/api/feedbacks', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(feedbackData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
+
+    setSubmitted(true);
+  } catch (error) {
+    console.error('Failed to submit feedback:', error);
+    alert('Failed to submit feedback. Please try again.');
+  }
+};
+
 
   return (
     <div className="feedback-container">
@@ -54,15 +72,32 @@ const Feedback = () => {
       ) : (
         <form className="feedback-form" onSubmit={handleSubmit}>
           <label>
-            Rating (1 to 5):<br />
-            <input
-              type="number"
-              min="1"
-              max="5"
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
-              required
-            />
+            Rating:
+            <div className="star-rating">
+              {[...Array(5)].map((star, index) => {
+                const currentRating = index + 1;
+                return (
+                  <label key={index}>
+                    <input
+                      type="radio"
+                      name="rating"
+                      value={currentRating}
+                      onClick={() => setRating(currentRating)}
+                      required
+                    />
+                    <FaStar
+                      className="star"
+                      color={
+                        currentRating <= (hover || rating) ? '#ffc107' : '#e4e5e9'
+                      }
+                      size={28}
+                      onMouseEnter={() => setHover(currentRating)}
+                      onMouseLeave={() => setHover(null)}
+                    />
+                  </label>
+                );
+              })}
+            </div>
           </label>
 
           <label>
@@ -72,7 +107,7 @@ const Feedback = () => {
               onChange={(e) => setMessage(e.target.value)}
               required
             />
-          </label><br></br>
+          </label>
 
           <label>
             Before Image:

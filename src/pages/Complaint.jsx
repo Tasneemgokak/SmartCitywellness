@@ -1,15 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Complaint.css';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const Complaint = () => {
+  const [currentUser, setCurrentUser] = useState(null);
   const [subject, setSubject] = useState('');
   const [description, setDescription] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setCurrentUser(user);
+      } else {
+        setCurrentUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!currentUser) {
+      alert('You must be logged in to submit a complaint.');
+      return;
+    }
+
     const complaintData = {
+      name: currentUser.displayName || 'Anonymous',
+      email: currentUser.email,
       subject,
       description
     };
@@ -47,6 +69,20 @@ const Complaint = () => {
         <p className="success-msg">Thank you for your complaint!</p>
       ) : (
         <form className="feedback-form" onSubmit={handleSubmit}>
+          <label>Name:</label>
+          <input
+            type="text"
+            value={currentUser?.displayName || ''}
+            readOnly
+          />
+
+          <label>Email:</label>
+          <input
+            type="email"
+            value={currentUser?.email || ''}
+            readOnly
+          />
+
           <label>Subject:</label>
           <input
             type="text"
