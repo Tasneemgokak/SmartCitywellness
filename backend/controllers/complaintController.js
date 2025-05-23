@@ -3,11 +3,18 @@ const Complaint = require('../models/Complaint');
 
 exports.createComplaint = async (req, res) => {
   try {
-    const { subject, description } = req.body;
+    const { name, email, subject, description } = req.body;
+
+    if (!name || !email || !subject || !description) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
     const complaintId = uuidv4();
 
     const newComplaint = new Complaint({
       complaintId,
+      name,
+      email,
       subject,
       description
     });
