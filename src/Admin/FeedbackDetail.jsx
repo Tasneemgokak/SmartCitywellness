@@ -5,7 +5,7 @@ import { getAuth } from "firebase/auth";
 import "../styles/admin.css";
 
 const FeedbackDetail = () => {
-  const { feedbackId } = useParams(); // feedbackId
+  const { feedbackId } = useParams();
   const [feedback, setFeedback] = useState(null);
   const navigate = useNavigate();
 
@@ -19,14 +19,14 @@ const FeedbackDetail = () => {
       }
 
       const token = await user.getIdToken();
-      
+
       try {
         const res = await axios.get(`http://localhost:5000/api/admin/feedback/${feedbackId}`, {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         });
         setFeedback(res.data);
-        
-
       } catch (error) {
         console.error("Fetch error:", error.response?.data || error.message);
       }

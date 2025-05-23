@@ -4,7 +4,7 @@ import '../styles/Feedback.css';
 import { FaStar } from 'react-icons/fa'; // ⭐ You'll need react-icons
 
 const Feedback = () => {
-  const { user } = useAuth();
+  const { currentUser } = useAuth();
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(null);
   const [message, setMessage] = useState('');
@@ -29,35 +29,40 @@ const Feedback = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+
+  if (!currentUser) {
+    alert("You must be logged in to submit feedback.");
+    return;
+  }
 
     const feedbackData = {
-      name: user?.displayName,
-      email: user?.email,
-      rating,
-      message,
-      date: new Date().toISOString(),
-      beforeImage,
-      afterImage,
-    };
-
-    try {
-      const response = await fetch('/api/feedbacks/feedback', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(feedbackData),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Server error: ${response.status}`);
-      }
-
-      setSubmitted(true);
-    } catch (error) {
-      console.error('Failed to submit feedback:', error);
-      alert('Failed to submit feedback. Please try again.');
-    }
+    name: currentUser?.displayName,
+    email: currentUser?.email,
+    rating,
+    message,
+    date: new Date().toISOString(),
+    beforeImage,
+    afterImage,
   };
+  try {
+    const response = await fetch('/api/feedbacks', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(feedbackData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
+
+    setSubmitted(true);
+  } catch (error) {
+    console.error('Failed to submit feedback:', error);
+    alert('Failed to submit feedback. Please try again.');
+  }
+};
+
 
   return (
     <div className="feedback-container">

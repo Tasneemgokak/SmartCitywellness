@@ -7,8 +7,8 @@ const feedbackSchema = new mongoose.Schema({
   rating: { type: Number, required: true },
   message: { type: String, required: true },
   date: { type: String },
-  beforeImage: String, // Base64
-  afterImage: String    // Base64
+  beforeImage: String, // Base64 or image path
+  afterImage: String   // Base64 or image path
 });
 
 module.exports = mongoose.model('Feedback', feedbackSchema);
