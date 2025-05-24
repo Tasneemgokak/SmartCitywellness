@@ -59,7 +59,7 @@ body {
 
 .complaint-form textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: 1px;
 }
 
 .complaint-form button {
@@ -76,4 +76,15 @@ body {
 
 .complaint-form button:hover {
   transform: scale(1.03);
+}
+
+.Subject-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dfe6e9;
+  border-radius: var(--radius);
+  background: #f9f9f9;
+  font-size: 16px;
+  transition: border-color 0.3s;
+  color: black;
 }

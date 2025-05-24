@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getAuth } from "firebase/auth";
-import "../styles/reportDetail.css"; // Updated style
+import "../styles/Styles/reportDetail.css"; // Updated style
 
 
 // config.js

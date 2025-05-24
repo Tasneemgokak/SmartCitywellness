@@ -5,7 +5,7 @@
   padding: 40px 20px;
   display: flex;
   justify-content: center;
-  background: url('../assets/green-bg.png') no-repeat center center fixed;
+  background: url('../../assets/green-bg.png') no-repeat center center fixed;
   background-size: cover;
   width: 100vw;
   height: 100vh;

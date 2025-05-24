@@ -61,7 +61,6 @@ const AppRoutes = () => {
       {/* Public Routes */}
       <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
       <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
-      {/* <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} /> */}
       <Route path="/report" element={<PrivateRoute><ReportIssue /></PrivateRoute>} />
       <Route path="/history" element={<PrivateRoute><History /></PrivateRoute>} />
       <Route path="/feedback" element={<PrivateRoute><Feedback /></PrivateRoute>} />

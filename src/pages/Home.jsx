@@ -14,8 +14,8 @@ const Home = () => {
   return (
     <div className="home-container">
       <header className="home-header">
-        <h2>Welcome, {currentUser?.displayName || currentUser?.email || "User"}!</h2>
-        <button onClick={handleLogout} className="logout-button">
+        <span className="gradient-text">Hello, {currentUser?.displayName || currentUser?.email || "User"}</span>
+        <button onClick={handleLogout} className="logout-btn">
           Logout
         </button>
       </header>
@@ -24,9 +24,6 @@ const Home = () => {
         <button onClick={() => navigate("/report")} className="home-button report-button">
           Report Issue
         </button>
-        {/* <button onClick={() => navigate("/dashboard")} className="home-button dashboard-button">
-          Dashboard
-        </button> */}
         <button onClick={() => navigate("/feedback")} className="home-button feedback-button">
           Feedback
         </button>

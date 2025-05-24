@@ -163,3 +163,66 @@
   color: #ccc;
   animation: fadeIn 1s ease;
 }
+
+/* ================= Type-specific Styling ================= */
+
+/* --- Reports Section --- */
+.section-reports {
+  background: rgba(0, 200, 100, 0.05);
+  border-left: 5px solid #00ff99;
+}
+.title-reports {
+  color: #99ffd0;
+}
+.list-item.item-reports {
+  border-left: 4px solid #00ff99;
+}
+.uid-reports {
+  color: #00ffaa;
+}
+.uid-reports:hover {
+  text-shadow: 0 0 8px #00ffaa;
+}
+
+/* --- Feedback Section --- */
+.section-feedback {
+  background: rgba(0, 170, 255, 0.05);
+  border-left: 5px solid #00c3ff;
+}
+.title-feedback {
+  color: #aefeff;
+}
+.list-item.item-feedback {
+  border-left: 4px solid #00c3ff;
+}
+.uid-feedback {
+  color: #00c3ff;
+}
+.uid-feedback:hover {
+  text-shadow: 0 0 8px #00c3ff;
+}
+
+/* --- Complaints Section --- */
+.section-complaints {
+  background: rgba(255, 90, 90, 0.05);
+  border-left: 5px solid #ff4d4d;
+}
+.title-complaints {
+  color: #ffbbbb;
+}
+.list-item.item-complaints {
+  border-left: 4px solid #ff4d4d;
+}
+.uid-complaints {
+  color: #ff4d4d;
+}
+.uid-complaints:hover {
+  text-shadow: 0 0 8px #ff4d4d;
+}
+
+/* Empty state message */
+.empty-msg {
+  color: #aaa;
+  font-style: italic;
+  padding-left: 0.5rem;
+}

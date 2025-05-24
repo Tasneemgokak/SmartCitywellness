@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getAuth } from "firebase/auth";
-import "../styles/complaintD.css";
+import "../styles/Styles/complaintD.css";
 
 const ComplaintDetail = () => {
   const { complaintId } = useParams();

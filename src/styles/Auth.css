@@ -36,12 +36,12 @@
 
 /* Inputs */
 input {
-  width: 100%;
+  width: 95%;
   padding: 0.85rem;
   margin-bottom: 1rem;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.3); /* Light transparent border */
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
+  background-color: rgba(0, 0, 0, 0.5);  /*Semi-transparent dark background */
   color: #fff; /* White text */
   font-size: 1rem;
   font-weight: 500;
