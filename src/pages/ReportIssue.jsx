@@ -125,7 +125,7 @@ const ReportIssue = () => {
     try {
     const formData = new FormData();
     formData.append('image', imageFile);
-    formData.append('description', issue);
+    formData.append('issue', issue);
     formData.append('userId', currentUser.displayName || currentUser.email);
     if (location) {
       formData.append('location', JSON.stringify(location));

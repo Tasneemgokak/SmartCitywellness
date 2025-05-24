@@ -1,7 +1,6 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./contexts/AuthContext";
-import Dashboard from "./pages/Dashboard";
 import ReportIssue from "./pages/ReportIssue";
 import History from "./pages/History";
 import Login from "./pages/Login";
@@ -62,7 +61,7 @@ const AppRoutes = () => {
       {/* Public Routes */}
       <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
       <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
-      <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+      {/* <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} /> */}
       <Route path="/report" element={<PrivateRoute><ReportIssue /></PrivateRoute>} />
       <Route path="/history" element={<PrivateRoute><History /></PrivateRoute>} />
       <Route path="/feedback" element={<PrivateRoute><Feedback /></PrivateRoute>} />

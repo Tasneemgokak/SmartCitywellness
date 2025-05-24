@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+/* Feedback Page Container */
+.feedback-wrapper {
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  background: url('../assets/green-bg.png') no-repeat center center fixed;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Card Glassmorphism Style */
+.feedback-card {
+  max-width: 900px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 20px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 16px 36px rgba(86, 150, 104, 0.2);
+  padding: 30px;
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(109, 175, 124, 0.15);
+}
+
+/* Hover Elevation */
+.feedback-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Title Styling */
+.section-title {
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #2e6c3c;
+  text-align: center;
+}
+
+/* Feedback Text Info */
+.feedback-info p {
+  margin: 10px 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Star Ratings */
+.stars {
+  color: #f5c518;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+/* Image Gallery */
+.image-gallery {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Collapsible Gallery Block */
+.image-block summary {
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: #245b39;
+  background-color: #e0f3e1;
+  padding: 10px 14px;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+
+/* Hover Color for Summary */
+.image-block summary:hover {
+  background-color: #cdebd3;
+}
+
+/* Images */
+.image-block img {
+  margin-top: 10px;
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(61, 121, 80, 0.2);
+}

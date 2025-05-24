@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const reportSchema = new mongoose.Schema({
   reportId: { type: String, required: true, unique: true },
   userId: { type: String, required: true },
-  email: { type: String, required: true },
-  issue: { type: String },
+  email: { type: String, required: false },
+  issue: { type: String, required: true },
   prediction: { type: String },
   severity: { type: String },
   location: {
@@ -12,7 +12,7 @@ const reportSchema = new mongoose.Schema({
     lng: Number
   },
   imagePath: { type: String },
-  audioPath: { type: String }, // Added this field
+  audioPath: { type: String }, 
 }, { timestamps: true });
 
 module.exports = mongoose.model('Report', reportSchema);

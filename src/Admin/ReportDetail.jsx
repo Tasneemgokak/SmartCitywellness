@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getAuth } from "firebase/auth";
-import "../styles/admin.css";
+import "../styles/reportDetail.css"; // Updated style
+
+
+// config.js
+export const BASE_URL = "http://localhost:5000";
 
 const ReportDetail = () => {
-  const { reportId } = useParams();  // Get reportId param here correctly
+  const { reportId } = useParams();
   const [report, setReport] = useState(null);
   const navigate = useNavigate();
 
@@ -33,26 +37,55 @@ const ReportDetail = () => {
       fetchReport();
     }
   }, [reportId, navigate]);
+  
 
-  if (!report) return <div>Loading...</div>;
+  if (!report) return <div className="loading">Loading report details...</div>;
+ 
+
 
   return (
-    <div className="detail-container">
-      <h2>Report Details</h2>
-      <p><strong>Issue:</strong> {report.issue}</p>
-      <p><strong>Location:</strong> Lat {report.location?.lat}, Lng {report.location?.lng}</p>
-      <p><strong>Date:</strong> {new Date(report.createdAt || report.date).toLocaleString()}</p>
+    <div className="report-bg">
+      <div className="report-card">
+        <h2 className="report-title">🗂️ Report Details</h2>
 
-      {report.imagePath && (
-        <div>
-          <strong>Image:</strong><br />
-          <img src={report.imagePath} alt="Report" className="preview-img" />
+        <div className="report-field"><strong>Issue:</strong> {report.issue}</div>
+
+        {report.location?.lat && report.location?.lng && (
+          <div className="report-field">
+            <strong>Location:</strong> Lat {report.location.lat}, Lng {report.location.lng}
+            <iframe
+              className="mini-map"
+              src={`https://maps.google.com/maps?q=${report.location.lat},${report.location.lng}&z=15&output=embed`}
+              loading="lazy"
+              title="map"
+            ></iframe>
+          </div>
+        )}
+
+        <div className="report-field">
+          <strong>Date:</strong> {new Date(report.createdAt || report.date).toLocaleString()}
+        </div>
+
+        {report.prediction && typeof report.prediction === 'string' && (
+        <div className="badge">
+          🏷️ Waste Category:{" "}
+          <span className={`badge-color ${report.prediction.toLowerCase().replace(/[^a-z]/g, '')}`}>
+            {report.prediction}
+          </span>
         </div>
       )}
 
-      {report.prediction && (
-        <p><strong>Predicted Waste Category:</strong> {report.prediction}</p>
-      )}
+        {report.imagePath && (
+          <div className="image-section">
+            <strong>Submitted Image:</strong>
+            <img
+                src={`${BASE_URL}/${report.imagePath}`}
+                alt="Report Visual"
+                className="report-img"
+              />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

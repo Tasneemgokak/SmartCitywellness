@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to bottom right, #d4f1d4, #b4e3c9);
+  color: #2d3e2e;
+}
+
+.complaint-wrapper {
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  background: url('../assets/green-bg1.png') no-repeat center center fixed;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+.complaint-card {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  max-width: 1100px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 40px rgba(108, 173, 137, 0.25);
+  padding: 30px;
+  transition: transform 0.3s ease;
+}
+
+.complaint-card:hover {
+  transform: translateY(-4px);
+}
+
+.complaint-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #246c3b;
+  margin-bottom: 20px;
+}
+
+.detail-pair {
+  font-size: 1.1rem;
+  padding: 10px 0;
+  border-bottom: 1px solid #c7e2c3;
+}
+
+.detail-pair span {
+  font-weight: 600;
+  color: #246c3b;
+}
+
+.image-preview {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(34, 139, 34, 0.25);
+}
