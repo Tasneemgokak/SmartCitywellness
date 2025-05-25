@@ -28,8 +28,17 @@ const Preview = () => {
   
   const { issue, image, prediction, user } = data;
    const getSeverityLevel = (predictedClass) => {
-    if (["glass", "metal"].includes(predictedClass)) return "High";
-    if (["Organic", "Recycle"].includes(predictedClass)) return "Medium";
+    if (["plastic", 
+      "ewaste", 
+      "trash", 
+      "biological",
+      "Organic"].includes(predictedClass)) return "High";
+    if (["shoes",
+       "clothes",
+       "green-glass",
+       "white-glass",
+       "brown-glass",
+       "metal"].includes(predictedClass)) return "Medium";
     return "Low";
   };
   const severity = getSeverityLevel(prediction);
