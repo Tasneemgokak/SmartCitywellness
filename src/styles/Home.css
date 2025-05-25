@@ -31,12 +31,13 @@ body::before {
   transform: translate(-50%, -50%);
 
   max-width: 1200px;
-  width: 90%; /* optional for responsiveness */
+  width: 90%; 
   padding: 3rem 2rem;
   font-family: 'Poppins', sans-serif;
-
-  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
   border-radius: 20px;
+  
+  background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
