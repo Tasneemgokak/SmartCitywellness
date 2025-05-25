@@ -8,8 +8,8 @@ import "../styles/Auth.css";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [credentials, setCredentials] = useState({ email: "", password: "" });
-  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) =>
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -18,19 +18,27 @@ const Login = () => {
     e.preventDefault();
     const { email, password } = credentials;
 
-  const auth = getAuth();
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log('Logged in as:', user.email);
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log('Logged in as:', user.email);
-      navigate('/home'); // Redirect to home page after successful login
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error('Error during login:', errorCode, errorMessage);
-    });
+        if (user.email === "sudoadmin@citywellness.in") {
+          // Block admin from entering user area
+          navigate("/admin-login", { replace: true });
+          return;
+        }
+
+        // Regular user login
+        navigate("/home", { replace: true });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error('Error during login:', errorCode, errorMessage);
+        setErrorMessage("Invalid email or password. Please try again.");
+      });
   };
 
   return (
@@ -66,12 +74,17 @@ const Login = () => {
             Log In
           </button>
         </form>
+
+        {/* Show error message if any */}
+        {errorMessage && <p className="error-text">{errorMessage}</p>}
+
         <div className="auth-switch-text">
           Don't have an account? &nbsp;
-            <Link to="/signup" className="link-style">
-              Sign up
-            </Link>
+          <Link to="/signup" className="link-style">
+            Sign up
+          </Link>
         </div>
+
         <GoogleButton />
 
         {/* ✅ Admin Login Button */}
@@ -81,7 +94,6 @@ const Login = () => {
         >
           Admin Login
         </button>
-
       </div>
     </div>
   );
