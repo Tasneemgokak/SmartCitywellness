@@ -8,7 +8,7 @@ const Preview = () => {
   const location = useLocation();
   const navigate = useNavigate();
   
-  const [data, setData] = useState(() => {
+  const [data] = useState(() => {
     const state = location.state;
     if (state) {
       localStorage.setItem("previewData", JSON.stringify(state));
