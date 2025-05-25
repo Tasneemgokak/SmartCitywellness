@@ -7,7 +7,7 @@ import '../styles/PreviewIssue.css';
 const Preview = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
+  
   const [data, setData] = useState(() => {
     const state = location.state;
     if (state) {
@@ -25,9 +25,17 @@ const Preview = () => {
     }
   }, [data, navigate]);
 
-  if (!data) return <p>Loading...</p>;
-
+  
   const { issue, image, prediction, user } = data;
+   const getSeverityLevel = (predictedClass) => {
+    if (["glass", "metal"].includes(predictedClass)) return "High";
+    if (["Organic", "Recycle"].includes(predictedClass)) return "Medium";
+    return "Low";
+  };
+  const severity = getSeverityLevel(prediction);
+
+if (!data) return <p>Loading...</p>;
+  
 
   return (
     <div className="preview-container">
@@ -52,6 +60,12 @@ const Preview = () => {
         <strong>🔍 Predicted Waste Class:</strong>
         <p className="prediction">{prediction}</p>
       </div>
+
+      <div className="preview-section">
+        <strong>🚨 Severity Level:</strong>
+        <p className={`severity ${severity.toLowerCase()}`}>{severity} Level</p>
+      </div>
+
 
       <button className="back-btn" onClick={() => navigate('/')}>Report Another Issue</button>
     </div>

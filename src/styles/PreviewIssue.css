@@ -53,3 +53,16 @@
 .back-btn:hover {
   background-color: #237031;
 }
+
+.severity.high {
+  color: red;
+  font-weight: bold;
+}
+.severity.medium {
+  color: orange;
+  font-weight: bold;
+}
+.severity.low {
+  color: green;
+  font-weight: bold;
+}

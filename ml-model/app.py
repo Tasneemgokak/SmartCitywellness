@@ -49,6 +49,14 @@ def predict():
         predicted_class = class_names[predicted_index]
         confidence = float(np.max(prediction))
 
+        # Determine severity based on predicted class
+        if predicted_class in ["Glass", "Metal"]:
+            severity = "High"
+        elif predicted_class in ["Organic", "Recycle"]:
+            severity = "Medium"
+        else:
+            severity = "Low"
+
         # Debug info
         print("🔢 Prediction vector:", prediction)
         print(f"🎯 Predicted class: {predicted_class} (Confidence: {confidence:.2f})")
@@ -56,6 +64,7 @@ def predict():
         return jsonify({
             "prediction": predicted_class,
             "confidence": confidence,
+            "severity": severity,
             "raw": [float(x) for x in prediction[0]],  # optional: detailed probabilities
             "classes": class_names
         })
