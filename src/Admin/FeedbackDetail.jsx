@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getAuth } from "firebase/auth";
+import { ArrowLeft } from 'lucide-react';
 import "../styles/Styles/feedbackD.css";
 
 const FeedbackDetail = () => {
@@ -68,6 +69,10 @@ const FeedbackDetail = () => {
             </details>
           )}
         </div>
+        <button className="back-btn" onClick={() => navigate(-1)}>
+        <ArrowLeft size={16} style={{ marginRight: "6px" }} />
+        Back
+      </button>
       </div>
     </div>
   );

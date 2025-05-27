@@ -13,6 +13,7 @@ const ReportIssue = () => {
   const [error, setError] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [audioURL, setAudioURL] = useState('');
+  const [audioBlob, setAudioBlob] = useState(null); 
   const [isPlaying, setIsPlaying] = useState(false);
 
   const fileInputRef = useRef(null);
@@ -42,9 +43,10 @@ const ReportIssue = () => {
       };
 
       mediaRecorderRef.current.onstop = () => {
-        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/wav' });
+        const blob = new Blob(audioChunksRef.current, { type: 'audio/wav' }); 
+        setAudioBlob(blob); 
         const audioUrl = URL.createObjectURL(audioBlob);
-        setAudioURL(audioUrl);
+        setAudioURL(audioUrl);  
       };
 
       mediaRecorderRef.current.start();
@@ -78,6 +80,7 @@ const ReportIssue = () => {
 
   const deleteVoiceMessage = () => {
     setAudioURL('');
+    setAudioBlob(null); 
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
@@ -123,18 +126,24 @@ const ReportIssue = () => {
     }
 
     try {
-    const formData = new FormData();
-    formData.append('image', imageFile);
-    formData.append('issue', issue);
-    formData.append('userId', currentUser.displayName || currentUser.email);
-    if (location) {
-      formData.append('location', JSON.stringify(location));
-    }
+      const formData = new FormData();
+      formData.append('image', imageFile);
+      formData.append('issue', issue);
+      formData.append('userId', currentUser.displayName || currentUser.email);
 
-    const response = await fetch('http://localhost:5000/api/reports/report', {
-      method: 'POST',
-      body: formData,
-    });
+      if (location) {
+        formData.append('location', JSON.stringify(location));
+      }
+
+      if (audioBlob) {
+        formData.append('audio', audioBlob, 'voice-message.wav'); 
+      }
+
+      const response = await fetch('http://localhost:5000/api/reports/report', {
+        method: 'POST',
+        body: formData,
+      });
+
       const data = await response.json();
 
       if (!response.ok || !data.prediction) {
@@ -167,6 +176,7 @@ const ReportIssue = () => {
     setImageFile(null);
     setLocation(null);
     setAudioURL('');
+    setAudioBlob(null); 
     setError('');
   };
 

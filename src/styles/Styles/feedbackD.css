@@ -86,3 +86,23 @@
   border-radius: 12px;
   box-shadow: 0 8px 18px rgba(61, 121, 80, 0.2);
 }
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #edecf1;
+  border: none;
+  color: #2c3e50;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background 0.3s ease;
+  font-weight: 600;
+  font-size: 0.90rem;
+  margin-top: 15px;
+}
+
+.back-btn:hover {
+  background-color: #d0d7de;
+}

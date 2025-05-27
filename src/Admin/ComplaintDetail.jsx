@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getAuth } from "firebase/auth";
+import { ArrowLeft } from 'lucide-react';
 import "../styles/Styles/complaintD.css";
 
 const ComplaintDetail = () => {
@@ -47,6 +48,10 @@ const ComplaintDetail = () => {
           <div className="detail-pair"><span>Subject:</span> {complaint.subject}</div>
           <div className="detail-pair"><span>Description:</span> {complaint.description}</div>
           <div className="detail-pair"><span>Date:</span> {new Date(complaint.date).toLocaleString()}</div>
+          <button className="back-btn" onClick={() => navigate(-1)}>
+            <ArrowLeft size={16} style={{ marginRight: "6px" }} />
+            Back
+          </button>
         </div>
 
         {complaint.image && (
@@ -54,6 +59,7 @@ const ComplaintDetail = () => {
             <img src={complaint.image} alt="Complaint" />
           </div>
         )}
+        
       </div>
     </div>
   );

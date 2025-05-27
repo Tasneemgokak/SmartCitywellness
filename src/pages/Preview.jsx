@@ -76,7 +76,7 @@ if (!data) return <p>Loading...</p>;
       </div>
 
 
-      <button className="back-btn" onClick={() => navigate('/')}>Report Another Issue</button>
+      <button className="btn" onClick={() => navigate('/')}>Report Another Issue</button>
     </div>
   );
 };
