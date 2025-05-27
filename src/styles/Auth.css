@@ -210,4 +210,129 @@ input:active {
 }
 
 
+/* Sign Up page */
 
+ /* Countdown Timer */
+.countdown-text {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+
+
+
+
+/* CSS for VerifyEmail page */
+
+
+/* 🌌 Fullscreen Background */
+.verify-email-background {
+  background: url("../assets/bkg.gif") no-repeat center center fixed;
+  background-size: cover;
+  backdrop-filter: brightness(0.4) blur(2px);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 🧊 Glassy Verification Box */
+.verify-email-box {
+  background: rgba(20, 20, 20, 0.75);
+  padding: 3rem;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+  color: #f1f1f1;
+  backdrop-filter: blur(5px);
+  animation: fadeUp 0.6s ease-out;
+  text-align: center;
+}
+
+/* 🔤 Title */
+.verify-email-box h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+  color: #00ffff;
+}
+
+/* ℹ️ Info Text */
+.verify-email-box p {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+/* ⏳ Countdown Timer */
+.verify-email-box .countdown-text {
+  font-size: 1.1rem;
+  color: #00ffff;
+  margin-bottom: 1.8rem;
+  animation: pulse 1.4s infinite;
+}
+
+/* 🔁 Resend Button */
+.resend-btn {
+  background: rgba(30, 30, 60, 0.4);
+  color: #00ffff;
+  border: 1px solid #00ffff55;
+  padding: 0.85rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.resend-btn:hover {
+  background: rgba(30, 30, 60, 0.6);
+  box-shadow: 0 0 16px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(0, 255, 255, 0.2);
+  color: #fff;
+  transform: scale(1.04);
+}
+
+/* ⬅️ Back to Signup Button */
+.back-btn {
+  margin-top: 1rem;
+  display: inline-block;
+  font-size: 0.95rem;
+  color: orange;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  color: #ffa733;
+  text-decoration: underline;
+}
+
+/* 🔄 Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}

@@ -12,6 +12,11 @@ const Home = () => {
     if (currentUser?.email === "sudoadmin@citywellness.in") {
       navigate("/login", { replace: true });
     }
+
+    if (currentUser && !currentUser.emailVerified) {
+      navigate("/verify-email");
+    }
+
   }, [currentUser, navigate]);
 
   const handleLogout = async () => {

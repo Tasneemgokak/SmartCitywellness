@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate, Link} from "react-router-dom";
 import { auth } from "../firebase";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {sendEmailVerification, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import GoogleButton from "../components/GoogleButton";
 import "../styles/Auth.css";
 
@@ -22,7 +22,6 @@ const Signup = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
  
-
 const handleSubmit = async (e) => {
   e.preventDefault();
   setError("");
@@ -36,18 +35,19 @@ const handleSubmit = async (e) => {
     );
 
     await updateProfile(userCredential.user, {
-      displayName: formData.name
+      displayName: formData.name,
     });
 
-    navigate("/home"); // This will work with the updated AuthContext
+    await sendEmailVerification(userCredential.user);
+    
+    navigate("/verify-email", { state: { fromSignup: true } });
+ 
   } catch (err) {
     setError(err.message);
   } finally {
     setLoading(false);
   }
 };
-
-// ... (rest of your component remains the same)
 
   return (
     <div className="auth-background">
