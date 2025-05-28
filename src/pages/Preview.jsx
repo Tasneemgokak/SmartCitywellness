@@ -7,8 +7,8 @@ import '../styles/PreviewIssue.css';
 const Preview = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
-  const [data, setData] = useState(() => {
+  
+  const [data] = useState(() => {
     const state = location.state;
     if (state) {
       localStorage.setItem("previewData", JSON.stringify(state));
@@ -25,9 +25,26 @@ const Preview = () => {
     }
   }, [data, navigate]);
 
-  if (!data) return <p>Loading...</p>;
-
+  
   const { issue, image, prediction, user } = data;
+   const getSeverityLevel = (predictedClass) => {
+    if (["plastic", 
+      "ewaste", 
+      "trash", 
+      "biological",
+      "Organic"].includes(predictedClass)) return "High";
+    if (["shoes",
+       "clothes",
+       "green-glass",
+       "white-glass",
+       "brown-glass",
+       "metal"].includes(predictedClass)) return "Medium";
+    return "Low";
+  };
+  const severity = getSeverityLevel(prediction);
+
+if (!data) return <p>Loading...</p>;
+  
 
   return (
     <div className="preview-container">
@@ -53,7 +70,13 @@ const Preview = () => {
         <p className="prediction">{prediction}</p>
       </div>
 
-      <button className="back-btn" onClick={() => navigate('/')}>Report Another Issue</button>
+      <div className="preview-section">
+        <strong>🚨 Severity Level:</strong>
+        <p className={`severity ${severity.toLowerCase()}`}>{severity} Level</p>
+      </div>
+
+
+      <button className="btn" onClick={() => navigate('/')}>Report Another Issue</button>
     </div>
   );
 };

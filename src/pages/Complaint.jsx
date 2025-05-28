@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/Complaint.css';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import '../styles/Complaint.css';
 
 const Complaint = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -48,7 +48,7 @@ const Complaint = () => {
       const data = await response.json();
 
       if (response.ok) {
-        alert(`Complaint submitted! ID: ${data.complaintId}`);
+        // alert(`Complaint submitted! ID: ${data.complaintId}`);
         setSubmitted(true);
         setSubject('');
         setDescription('');
@@ -78,6 +78,7 @@ const Complaint = () => {
 
           <label>Email:</label>
           <input
+            className="complaint-input"
             type="email"
             value={currentUser?.email || ''}
             readOnly
@@ -85,6 +86,7 @@ const Complaint = () => {
 
           <label>Subject:</label>
           <input
+           className='Subject-input'
             type="text"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}

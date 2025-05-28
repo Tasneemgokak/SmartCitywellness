@@ -98,7 +98,11 @@ const handleLogin = async (e) => {
         </div> */}
          <button
           className="admin-login-btn"
-          onClick={() => navigate("/login")}
+          onClick={async () => {
+            const auth = getAuth();
+            await auth.signOut(); 
+            navigate("/login", { replace: true });
+          }}
         >
           User Login
         </button>

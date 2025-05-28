@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.report-bg {
+  background: url('../../assets/green-bg.png') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+  color: #294835;
+}
+
+.report-card {
+  max-width: 950px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  padding: 40px 30px;
+  box-shadow: 0 16px 38px rgba(61, 122, 89, 0.25);
+}
+
+.report-title {
+  font-size: 2rem;
+  color: #245b39;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.report-field {
+  font-size: 0.75rem;
+  margin-bottom: 5px;
+}
+
+.badge {
+  margin: 20px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.badge-color {
+  padding: 6px 14px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+/* Sanitize prediction class names */
+.badge-color.plastic {
+  background-color: #4caf50;
+}
+.badge-color.ewaste {
+  background-color: #2196f3;
+}
+.badge-color.organic {
+  background-color: #8bc34a;
+}
+.badge-color.metal {
+  background-color: #ff9800;
+}
+.badge-color.paper {
+  background-color: #00bcd4;
+}
+.badge-color.glass {
+  background-color: #9c27b0;
+}
+.badge-color.trash {
+  background-color: red;
+}
+
+.report-img {
+  width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  margin-top: 15px;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(61, 121, 80, 0.2);
+}
+
+.mini-map {
+  margin-top: 10px;
+  width: 100%;
+  height: 250px;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 6px 12px rgba(71, 119, 92, 0.15);
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #2e4630;
+  padding-top: 80px;
+}
+
+
+
+.audio-section {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.audio-section strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.report-audio {
+  width: 100%;
+  max-width: 500px;
+  outline: none;
+  border-radius: 6px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #edecf1;
+  border: none;
+  color: #2c3e50;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background 0.3s ease;
+  font-weight: 600;
+  font-size: 0.90rem;
+  margin-top: 15px;
+}
+
+.back-btn:hover {
+  background-color: #d0d7de;
+}

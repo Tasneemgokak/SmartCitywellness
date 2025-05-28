@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getAuth } from "firebase/auth";
-import "../styles/admin.css";
+import { ArrowLeft } from 'lucide-react';
+import "../styles/Styles/complaintD.css";
 
 const ComplaintDetail = () => {
   const { complaintId } = useParams();
@@ -22,9 +23,7 @@ const ComplaintDetail = () => {
       try {
         const res = await axios.get(
           `http://localhost:5000/api/admin/complaints/${complaintId}`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
+          { headers: { Authorization: `Bearer ${token}` } }
         );
         setComplaint(res.data);
       } catch (error) {
@@ -40,20 +39,28 @@ const ComplaintDetail = () => {
   if (!complaint) return <div>Loading...</div>;
 
   return (
-    <div className="detail-container">
-      <h2>Complaint Details</h2>
-      <p><strong>Name:</strong> {complaint.name}</p>
-      <p><strong>Email:</strong> {complaint.email}</p>
-      <p><strong>Subject:</strong> {complaint.subject}</p>
-      <p><strong>Description:</strong> {complaint.description}</p>
-      <p><strong>Date:</strong> {new Date(complaint.date).toLocaleString()}</p>
-
-      {complaint.image && (
-        <div>
-          <strong>Image:</strong><br />
-          <img src={complaint.image} alt="Complaint" className="preview-img" />
+    <div className="complaint-wrapper">
+      <div className="complaint-card">
+        <div className="complaint-content">
+          <h2 className="section-title">🌿 Complaint Details</h2>
+          <div className="detail-pair"><span>Name:</span> {complaint.name}</div>
+          <div className="detail-pair"><span>Email:</span> {complaint.email}</div>
+          <div className="detail-pair"><span>Subject:</span> {complaint.subject}</div>
+          <div className="detail-pair"><span>Description:</span> {complaint.description}</div>
+          <div className="detail-pair"><span>Date:</span> {new Date(complaint.date).toLocaleString()}</div>
+          <button className="back-btn" onClick={() => navigate(-1)}>
+            <ArrowLeft size={16} style={{ marginRight: "6px" }} />
+            Back
+          </button>
         </div>
-      )}
+
+        {complaint.image && (
+          <div className="image-preview">
+            <img src={complaint.image} alt="Complaint" />
+          </div>
+        )}
+        
+      </div>
     </div>
   );
 };

@@ -6,15 +6,15 @@ const FormData = require('form-data');
 
 exports.createReport = async (req, res) => {
   try {
-    const { userId, location, issue } = req.body;
+    const { userId, location, issue, email } = req.body;
     const reportId = uuidv4();
 
     if (!req.files || !req.files.image) {
       return res.status(400).json({ error: 'Image is required.' });
     }
 
-    const imagePath = req.files.image[0].path;
-    const audioPath = req.files.audio ? req.files.audio[0].path : null; // optional
+    const imagePath = `uploads/${req.files.image[0].filename}`;
+    const audioPath = req.files.audio ? `uploads/${req.files.audio[0].filename}` : null;
 
     let severity = "Unknown";
     let prediction = "Unknown";
@@ -32,7 +32,6 @@ exports.createReport = async (req, res) => {
         prediction = response.data.prediction;
         severity = response.data.severity || "Unknown";
       }
-
     } catch (err) {
       console.error('ML model error:', err.message);
     }
@@ -40,25 +39,21 @@ exports.createReport = async (req, res) => {
     const newReport = new Report({
       reportId,
       userId,
+      email,
       issue,
       severity,
       prediction,
-      location,
+      location: location ? JSON.parse(location) : undefined,
       imagePath,
-      audioPath
+      audioPath,
+      createdAt: new Date()
     });
 
     await newReport.save();
+    res.status(201).json({ message: 'Report submitted successfully', prediction , newReport});
 
-    res.status(201).json({
-      message: 'Report created successfully',
-      reportId,
-      severity,
-      prediction
-    });
-
-  } catch (err) {
-    console.error('Report creation failed:', err.message);
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    console.error("Report submission failed:", error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 };

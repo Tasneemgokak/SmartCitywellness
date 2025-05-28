@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged, getIdTokenResult, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../styles/AdminDashboard.css";
+import "../styles/Styles/AdminDashboard.css";
 
 const AdminDashboard = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -101,27 +101,32 @@ const AdminDashboard = () => {
         <button className="logout-btn" onClick={handleLogout}>Logout</button>
       </div>
 
-      {["reports", "feedback", "complaints"].map((type) => (
-        <div key={type} className="admin-section">
-          <h3>{type.charAt(0).toUpperCase() + type.slice(1)}</h3>
-          {data[type].length === 0 ? (
-            <p>No entries yet.</p>
-          ) : (
-            <ul>
-              {data[type].map((item) => {
-                const id = getItemId(type, item);
-                return (
-                  <li key={id}>
-                    <span className="uid" onClick={() => handleViewDetails(type, id)}>
-                      {id}
-                    </span>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
-        </div>
-      ))}
+     {["reports", "feedback", "complaints"].map((type) => (
+  <div key={type} className={`admin-section section-${type}`}>
+    <h3 className={`section-title title-${type}`}>
+      {type.charAt(0).toUpperCase() + type.slice(1)}
+    </h3>
+    {data[type].length === 0 ? (
+      <p className="empty-msg">No entries yet.</p>
+    ) : (
+      <ul className={`list list-${type}`}>
+        {data[type].map((item) => {
+          const id = getItemId(type, item);
+          return (
+            <li key={id} className={`list-item item-${type}`}>
+              <span className={`uid uid-${type}`} onClick={() => handleViewDetails(type, id)}>
+                {id}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+    )}
+  </div>
+))}
+      <div className="admin-footer">
+        <p>Admin Dashboard © 2025</p>
+      </div>  
     </div>
   );
 };

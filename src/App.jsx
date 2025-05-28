@@ -1,11 +1,11 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./contexts/AuthContext";
-import Dashboard from "./pages/Dashboard";
 import ReportIssue from "./pages/ReportIssue";
 import History from "./pages/History";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import VerifyEmail from "./pages/VerifyEmail";
 import Feedback from "./pages/Feedback";
 import Home from "./pages/Home";
 import Complaint from "./pages/Complaint";
@@ -54,6 +54,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/verify-email" element={<VerifyEmail />} />
       <Route path="/admin-login" element={<AdminLogin />} />
 
       
@@ -62,7 +63,6 @@ const AppRoutes = () => {
       {/* Public Routes */}
       <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
       <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
-      <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
       <Route path="/report" element={<PrivateRoute><ReportIssue /></PrivateRoute>} />
       <Route path="/history" element={<PrivateRoute><History /></PrivateRoute>} />
       <Route path="/feedback" element={<PrivateRoute><Feedback /></PrivateRoute>} />
@@ -71,11 +71,6 @@ const AppRoutes = () => {
       
       
                                       {/* Admin Protected Routes */}
-
-      {/* <Route path="/admin-dashboard" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} /> 
-      <Route path="/admin/feedback/:feedbackId" element={<PrivateRoute><FeedbackDetail /></PrivateRoute>} />
-      <Route path="/admin/reports/:reportId" element={<PrivateRoute><ReportDetail /></PrivateRoute>} />
-      <Route path="/admin/complaints/:complaintId" element={<PrivateRoute><ComplaintDetail /></PrivateRoute>} /> */}
 
       <Route path="/admin-dashboard" element={ <AdminPrivateRoute><AdminDashboard /></AdminPrivateRoute> } />
       <Route path="/admin/feedback/:feedbackId" element={<AdminPrivateRoute><FeedbackDetail /></AdminPrivateRoute>} />

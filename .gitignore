@@ -30,3 +30,4 @@ uploads/
 .firebase/
 backend/Admin/serviceAccountKey.json
 backend/Admin/node_modules
+DATASET.zip

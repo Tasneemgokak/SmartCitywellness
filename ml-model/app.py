@@ -9,28 +9,29 @@ app = Flask(__name__)
 CORS(app, resources={r"/predict": {"origins": "*"}}, supports_credentials=True)
 
 # Load model and classes
-model = load_model("waste_classifier_model.h5")
-with open("classes.txt", "r") as f:
-    class_names = [line.strip() for line in f.readlines()]
+try:
+    model = load_model("waste_classifier_model.h5")
+    with open("classes.txt", "r") as f:
+        class_names = [line.strip() for line in f.readlines()]
+except Exception as e:
+    raise RuntimeError(f"🚨 Failed to load model or classes: {e}")
 
 # Check class count consistency
 if len(class_names) != model.output_shape[-1]:
     raise ValueError(f"Class count mismatch! Model outputs {model.output_shape[-1]} classes, but classes.txt has {len(class_names)}")
 
-# EMOJIS ARE MENTIONED BECAUSE TO IDENTIFY THE LINE IN TERMINAL
-# and to make it more readable
-print(f"✅ Model loaded successfully with {len(class_names)} classes.")
+print(f"Model loaded successfully with {len(class_names)} classes.")
 
 @app.route("/", methods=["GET"])
 def home():
-    return "✅ Flask server is running!"
+    return "Flask server is running!"
 
 @app.route("/predict", methods=["POST"])
 def predict():
-    print("📥 /predict endpoint was hit")
+    print("/predict endpoint was hit")
 
     if 'file' not in request.files:
-        print("⚠️ No file part in the request")
+        print("No file part in the request")
         return jsonify({"error": "No file uploaded"}), 400
 
     img_file = request.files['file']
@@ -49,19 +50,37 @@ def predict():
         predicted_class = class_names[predicted_index]
         confidence = float(np.max(prediction))
 
+        # Determine severity based on predicted class
+        if predicted_class in ["plastic", 
+                                "ewaste", 
+                                "trash", 
+                                "biological",
+                                "Organic"]:
+            severity = "High"
+        elif predicted_class in ["shoes",
+                                "clothes",
+                                "green-glass",
+                                "white-glass",
+                                "brown-glass",
+                                "metal"]:
+            severity = "Medium"
+        else:
+            severity = "Low"
+
         # Debug info
-        print("🔢 Prediction vector:", prediction)
-        print(f"🎯 Predicted class: {predicted_class} (Confidence: {confidence:.2f})")
+        print("Prediction vector:", prediction)
+        print(f"Predicted class: {predicted_class} (Confidence: {confidence:.2f})")
 
         return jsonify({
             "prediction": predicted_class,
             "confidence": confidence,
+            "severity": severity,
             "raw": [float(x) for x in prediction[0]],  # optional: detailed probabilities
             "classes": class_names
         })
 
     except Exception as e:
-        print(f"❌ Error during prediction: {e}")
+        print(f" Error during prediction: {e}")
         return jsonify({"error": "Prediction failed"}), 500
 
 if __name__ == "__main__":

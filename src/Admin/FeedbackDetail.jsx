@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getAuth } from "firebase/auth";
-import "../styles/admin.css";
+import { ArrowLeft } from 'lucide-react';
+import "../styles/Styles/feedbackD.css";
 
 const FeedbackDetail = () => {
   const { feedbackId } = useParams();
@@ -19,7 +20,6 @@ const FeedbackDetail = () => {
       }
 
       const token = await user.getIdToken();
-
       try {
         const res = await axios.get(`http://localhost:5000/api/admin/feedback/${feedbackId}`, {
           headers: {
@@ -37,29 +37,43 @@ const FeedbackDetail = () => {
     }
   }, [feedbackId, navigate]);
 
-  if (!feedback) return <div>Assuming No Data Present</div>;
+  if (!feedback) return <div>Loading...</div>;
+
+  const renderStars = (count) => {
+    return "⭐️".repeat(count || 0);
+  };
 
   return (
-    <div className="detail-container">
-      <h2>Feedback Details</h2>
-      <p><strong>Feedback ID:</strong> {feedback.feedbackId}</p>
-      {feedback.name && <p><strong>Name:</strong> {feedback.name}</p>}
-      {feedback.email && <p><strong>Email:</strong> {feedback.email}</p>}
-      <p><strong>Rating:</strong> {feedback.rating}</p>
-      <p><strong>Message:</strong> {feedback.message}</p>
-      <p><strong>Date:</strong> {new Date(feedback.date).toLocaleString()}</p>
-      {feedback.beforeImage && (
-        <div>
-          <strong>Before Image:</strong><br />
-          <img src={feedback.beforeImage} alt="Before" className="preview-img" />
+    <div className="feedback-wrapper">
+      <div className="feedback-card">
+        <h2 className="section-title">🌿 Feedback Summary</h2>
+        <div className="feedback-info">
+          {feedback.name && <p><strong>Name:</strong> {feedback.name}</p>}
+          {feedback.email && <p><strong>Email:</strong> {feedback.email}</p>}
+          <p><strong>Rating:</strong> <span className="stars">{renderStars(feedback.rating)}</span></p>
+          <p><strong>Message:</strong> {feedback.message}</p>
+          <p><strong>Date:</strong> {new Date(feedback.date).toLocaleString()}</p>
         </div>
-      )}
-      {feedback.afterImage && (
-        <div>
-          <strong>After Image:</strong><br />
-          <img src={feedback.afterImage} alt="After" className="preview-img" />
+
+        <div className="image-gallery">
+          {feedback.beforeImage && (
+            <details className="image-block">
+              <summary>Before Image</summary>
+              <img src={feedback.beforeImage} alt="Before" />
+            </details>
+          )}
+          {feedback.afterImage && (
+            <details className="image-block">
+              <summary>After Image</summary>
+              <img src={feedback.afterImage} alt="After" />
+            </details>
+          )}
         </div>
-      )}
+        <button className="back-btn" onClick={() => navigate(-1)}>
+        <ArrowLeft size={16} style={{ marginRight: "6px" }} />
+        Back
+      </button>
+      </div>
     </div>
   );
 };

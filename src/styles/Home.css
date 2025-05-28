@@ -1,10 +1,72 @@
+/* Applies for complete project */
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #2d3e2e;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Blurred background image */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../assets/green-gb-home.png') no-repeat center center;
+  background-size: cover;
+  filter: blur(2px); /* Adjust blur level as needed and add brightness(0.9) */
+  z-index: -1;
+}
+
 /* Home Container */
 .home-container {
-  max-width: 900px;
-  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  max-width: 1200px;
+  width: 90%; 
   padding: 3rem 2rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  color: #222;
+  min-height: 500px;
 }
+
+
+.gradient-text {
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #4285F4, #EA4335, #fbbc05, #34a853, #4285F4);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  animation: gradientFlow 3s linear infinite;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 100% center;
+  }
+}
+
 
 /* Header Layout */
 .home-header {
@@ -26,77 +88,68 @@
   padding: 1.1rem;
   font-size: 1.05rem;
   border: none;
-  border-radius: 12px;
+  border-radius: 16px;
   cursor: pointer;
   font-weight: 600;
   transition: all 0.35s ease;
   transform: scale(1);
   letter-spacing: 0.5px;
   color: #fff;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 0;
   overflow: hidden;
 }
 
-/* Base Hover Neon Glow */
+/* Hover Glow Effect */
 .home-button:hover {
-  transform: translateY(-4px) scale(1.03);
+  transform: translateY(-4px) scale(1.04);
 }
 
 /* Report Button */
 .report-button {
-  background-color: #ff6b6b;
+  background: linear-gradient(135deg, #ff6b6b, #ff8a65);
 }
 
 .report-button:hover {
-  box-shadow: 0 0 12px #ff6b6b, 0 0 22px #ff6b6b, 0 0 34px #ff6b6b;
-}
-
-/* Dashboard Button */
-.dashboard-button {
-  background-color: #4ecdc4;
-}
-
-.dashboard-button:hover {
-  box-shadow: 0 0 12px #4ecdc4, 0 0 22px #4ecdc4, 0 0 34px #4ecdc4;
+  box-shadow: 0 0 16px #ff6b6b, 0 0 24px #ff8a65;
 }
 
 /* Feedback Button */
 .feedback-button {
-  background-color: #ffbe76;
+  background: linear-gradient(135deg, #f6d365, #fda085);
 }
 
 .feedback-button:hover {
-  box-shadow: 0 0 12px #ffbe76, 0 0 22px #ffbe76, 0 0 34px #ffbe76;
+  box-shadow: 0 0 16px #fda085, 0 0 24px #f6d365;
 }
 
 /* Complaint Button */
 .complaint-button {
-  background-color: #a29bfe;
+  background: linear-gradient(135deg, #a29bfe, #74b9ff);
 }
 
 .complaint-button:hover {
-  box-shadow: 0 0 12px #a29bfe, 0 0 22px #a29bfe, 0 0 34px #a29bfe;
+  box-shadow: 0 0 16px #a29bfe, 0 0 24px #74b9ff;
 }
 
-/* Logout Button (Separate style) */
-.logout-button {
-  padding: 0.6rem 1.2rem;
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+/* Logout Button */
+.logout-btn {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 50px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-  color: #333;
+  box-shadow: 0 6px 18px rgba(255, 75, 43, 0.4);
 }
 
-.logout-button:hover {
-  background-color: #f1f1f1;
-  border-color: #bbb;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+.logout-btn:hover {
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  transform: scale(1.05);
 }
 
 /* Loading Text */
@@ -104,5 +157,5 @@
   text-align: center;
   padding: 2rem;
   font-size: 1.25rem;
-  color: #555;
+  color: #444;
 }
