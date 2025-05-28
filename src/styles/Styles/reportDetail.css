@@ -71,6 +71,9 @@ body {
 .badge-color.glass {
   background-color: #9c27b0;
 }
+.badge-color.trash {
+  background-color: red;
+}
 
 .report-img {
   width: 100%;

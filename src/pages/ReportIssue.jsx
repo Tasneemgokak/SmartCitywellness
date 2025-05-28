@@ -45,7 +45,7 @@ const ReportIssue = () => {
       mediaRecorderRef.current.onstop = () => {
         const blob = new Blob(audioChunksRef.current, { type: 'audio/wav' }); 
         setAudioBlob(blob); 
-        const audioUrl = URL.createObjectURL(audioBlob);
+        const audioUrl = URL.createObjectURL(blob);
         setAudioURL(audioUrl);  
       };
 
