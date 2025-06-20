@@ -1,70 +1,126 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🌆 City Wellness – Smart Reporting and Monitoring System
 
-## Available Scripts
+A full-stack smart city web application that enables citizens to report waste-related issues using AI-powered waste classification, real-time geolocation, and media uploads. Built as a BCA final-year project to improve urban hygiene, transparency, and municipal response efficiency.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 📸 **Waste Reporting** — Citizens can report waste with image uploads, live GPS location, and optional voice messages.
+- 🧠 **AI Waste Classification** — Integrated a TensorFlow CNN model to classify waste into Organic, Metal, or Glass and assign severity (Low/Medium/High).
+- 🔐 **Authentication** — Secure Google login for users and role-based access for admins via Firebase Authentication.
+- 📊 **Admin Dashboard** — Real-time dashboard to monitor complaints, reports, feedback, and assign cleanup actions.
+- 💬 **Feedback & Complaints** — Supports rating, image comparisons, and escalations if issues are not resolved.
+- 🌐 **Geolocation + Voice** — Captures location coordinates and allows audio input for richer reporting.
+- 📈 **Analytics** — Predictive insights using historical data to help authorities optimize waste collection schedules.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🛠️ Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Layer       | Technology Used                          |
+|-------------|-------------------------------------------|
+| Frontend    | React.js, HTML5, CSS3, JavaScript         |
+| Backend     | Node.js, Express.js, Flask (Python)       |
+| Database    | MongoDB (with Mongoose), Firebase Realtime DB |
+| AI/ML       | TensorFlow, Keras (CNN Model)             |
+| Auth        | Firebase Authentication (Google OAuth)    |
+| Dev Tools   | Git, GitHub, VS Code, Postman             |
+| APIs        | Google Maps API, Web Audio API, Geolocation API |
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📷 Screenshots
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+> Include these if you have them:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Dashboard view  
+- Waste report form with image + location  
+- AI prediction output  
+- Feedback form with star ratings  
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 📦 Installation
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 🔧 Prerequisites
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Node.js (v18+)
+- Python (v3.8+)
+- MongoDB
+- Firebase account
+- Git
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 🖥️ Backend Setup (Node + Flask)
 
-## Learn More
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Tasneemgokak/SmartCitywellness.git
+   cd SmartCitywellness
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Navigate to Flask backend:
+   ```bash
+   cd ml-model
+   pip3 install -r requirements.txt
+   python3 app.py
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Navigate to Express backend:
+   ```bash
+   cd backend
+   node server.js
+   ```
 
-### Code Splitting
+### 🌐 Frontend Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+cd frontend
+npm install
+npm start
+```
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 📂 Project Structure
 
-### Making a Progressive Web App
+```
+SmartCitywellness/
+│
+├── frontend/              # React UI with reporting, feedback, admin panel
+├── backend/               # Node.js + Express REST API
+├── ml-model/              # Flask server with ML model (TensorFlow)
+└── README.md              # Project documentation
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## 🧠 AI Model
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Built using TensorFlow + Keras
+- Convolutional Neural Network (CNN)
+- Trained to classify waste as Organic, Metal, or Glass
+- Returns severity classification (Low/Medium/High)
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## ✅ Testing
 
-### `npm run build` fails to minify
+- Unit Testing (React Components, API routes, AI model)
+- Integration Testing (Frontend ↔ Backend ↔ ML)
+- Security Testing (Firebase Auth, route protection)
+- Performance Testing (image upload, model inference speed)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## 👨‍💻 Authors
+
+- [Tasneem Gokak] -> https://github.com/Tasneemgokak  
+- [Musaddiqua rajannavar] -> https://github.com/Musaddiqua
+- [Mohammed Shoaib M] -> https://github.com/MaDycloud-MD
+
+---
+
+## 🙌 Acknowledgements
+- Inspiration: Smart Cities Mission, India
