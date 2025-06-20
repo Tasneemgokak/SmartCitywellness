@@ -35,10 +35,17 @@ A full-stack smart city web application that enables citizens to report waste-re
 
 > Include these if you have them:
 
-- Dashboard view  
-- Waste report form with image + location  
-- AI prediction output  
-- Feedback form with star ratings  
+### 🖥️ Admin Dashboard
+![Admin Dashboard](screenshots/dashboard.png)
+
+### 📝 Waste Report Form
+![Report Form](screenshots/report-form.png)
+
+### 🧠 AI Prediction Result
+![AI Prediction](screenshots/ai-result.png)
+
+### 🌟 Feedback Form with Ratings
+![Feedback Form](screenshots/feedback.png)
 
 ---
 
