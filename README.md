@@ -33,8 +33,6 @@ A full-stack smart city web application that enables citizens to report waste-re
 
 ## 📷 Screenshots
 
-> Include these if you have them:
-
 ### 🖥️ Admin Dashboard
 ![Admin Dashboard](screenshots/dashboard.png)
 
