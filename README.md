@@ -33,18 +33,48 @@ A full-stack smart city web application that enables citizens to report waste-re
 
 ## 📷 Screenshots
 
-### 🖥️ Admin Dashboard
-![Admin Dashboard](screenshots/dashboard.png)
+### Login
+![login] (screenshots/login.png)
+
+### Signup
+![signup] (screenshot/signup.png)
 
 ### 📝 Waste Report Form
-![Report Form](screenshots/report-form.png)
+![Report Form](screenshots/report.png)
 
-### 🧠 AI Prediction Result
-![AI Prediction](screenshots/ai-result.png)
+#### Preview
+![Report Preview](screentshots/preview.png)
+
+### Complaint 
+![Complaint Form](screenshots/complaint.png)
 
 ### 🌟 Feedback Form with Ratings
 ![Feedback Form](screenshots/feedback.png)
 
+### 🖥️ Admin Login
+![Admin Login](screenshots/admin_login.png)
+
+### 🖥️ Admin Dashboard
+![Admin Dashboard](screenshots/admin_dashboard.png)
+
+### Admin Report 
+![Admin Report] (screenshots/admin_report.png)
+
+### Admin Complaint 
+![Admin Complaint] (screenshots/admin_complaint.png)
+
+### 🌟 Admin Feedback 
+![Admin Feedback ](screenshots/admin_feedback.png)
+
+### Production servers
+![Servers](screenshots/Picture1.png)
+
+### AI/ML Model Training
+![Training mode](screenshot/Picture2)
+![Training mode](screenshot/Picture3)
+
+### 🧠 AI Prediction Result
+![AI Prediction](screenshots/Predication_Terminal.png)
 ---
 
 ## 📦 Installation
