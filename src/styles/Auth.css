@@ -1,0 +1,338 @@
+/* 🔥 Background Styling */
+.auth-background {
+  background: url("../assets/bkg.gif") no-repeat center center fixed;
+  background-size: cover;
+  backdrop-filter: brightness(0.4) blur(2px);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* 🌌 Glassy Auth Box */
+.auth-box {
+  background: rgba(20, 20, 20, 0.7);
+  padding: 3rem;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  color: #f1f1f1;
+  backdrop-filter: blur(5px);
+  animation: fadeUp 0.6s ease-out;
+}
+
+/* 🔤 Header */
+.auth-box h2 {
+  text-align: center;
+  margin-bottom: 1.8rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.9rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Inputs */
+input {
+  width: 95%;
+  padding: 0.85rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Light transparent border */
+  background-color: rgba(0, 0, 0, 0.5);  /*Semi-transparent dark background */
+  color: #fff; /* White text */
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(6px); /* Glassy effect */
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.7); /* Lighter placeholder text */
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid #00ffff; /* Neon cyan border when focused */
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.4), 0 0 20px rgba(0, 255, 255, 0.5); /* Neon glow effect */
+}
+
+input:hover {
+  border: 1px solid #00ffff; /* Neon cyan border on hover */
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.4), 0 0 20px rgba(0, 255, 255, 0.5); /* Neon glow effect */
+}
+
+input:active {
+  border: 1px solid #00ffff; /* Neon cyan border on click */
+  box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.3), 0 0 16px rgba(0, 255, 255, 0.4); /* Glowing effect on click */
+}
+
+
+
+/*  Eye Icon */
+.input-wrapper {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  top: 40%;
+  right: 0.40rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #eee7e7;
+  font-size: 1rem;
+}
+
+/* Login Button */
+.btn {
+  width: 100%;
+  background: rgba(30, 30, 60, 0.4); /* Semi-transparent, glassy effect */
+  color: #00ffff; /* Neon blue text */
+  padding: 0.85rem;
+  border: 1px solid #00ffff55; /* Light border */
+  backdrop-filter: blur(6px); /* Glass blur effect */
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.2), inset 0 0 8px rgba(0, 255, 255, 0.15);
+}
+
+.btn:hover {
+  background: rgba(30, 30, 60, 0.6); /* Darker background */
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.4), inset 0 0 12px rgba(0, 255, 255, 0.3);
+  transform: scale(1.05); /* Slight scale-up effect */
+  color: #ffffff; /* Change text color to white */
+}
+
+.btn:active {
+  transform: scale(0.98) translateY(1px); /* Push down effect when clicked */
+}
+
+.btn:focus {
+  outline: none; /* Remove default focus outline */
+  border: 1px solid #00ffff; /* Add focus border */
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.5); /* Focus glow effect */
+}
+
+
+/* Sign Up Text */
+.auth-switch-text {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+.link-style {
+  color: orange;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link-style:hover {
+  text-decoration: underline;
+  color: #ffa733;
+}
+
+/* Google Button */
+.google-btn {
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #333;
+  border: none;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  gap: 0.6rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.google-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+.google-icon {
+  width: 26px;
+  height: 26px;
+}
+
+/* Admin Login Button */
+.admin-login-btn {
+  margin-top: 1.2rem;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  width: 100%;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(46, 91, 255, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.admin-login-btn {
+  margin-top: 1.5rem;
+  padding: 14px 20px;
+  width: 100%;
+  background: rgba(30, 30, 60, 0.4);
+  color: #00ffff;
+  border: 1px solid #00ffff55;
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.2), inset 0 0 8px rgba(0, 255, 255, 0.15);
+}
+
+.admin-login-btn:hover {
+  background: rgba(30, 30, 60, 0.6);
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.4), inset 0 0 12px rgba(0, 255, 255, 0.3);
+  transform: scale(1.03);
+  color: #ffffff;
+}
+
+
+/* Sign Up page */
+
+ /* Countdown Timer */
+.countdown-text {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+
+
+
+
+/* CSS for VerifyEmail page */
+
+
+/* 🌌 Fullscreen Background */
+.verify-email-background {
+  background: url("../assets/bkg.gif") no-repeat center center fixed;
+  background-size: cover;
+  backdrop-filter: brightness(0.4) blur(2px);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 🧊 Glassy Verification Box */
+.verify-email-box {
+  background: rgba(20, 20, 20, 0.75);
+  padding: 3rem;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+  color: #f1f1f1;
+  backdrop-filter: blur(5px);
+  animation: fadeUp 0.6s ease-out;
+  text-align: center;
+}
+
+/* 🔤 Title */
+.verify-email-box h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+  color: #00ffff;
+}
+
+/* ℹ️ Info Text */
+.verify-email-box p {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+/* ⏳ Countdown Timer */
+.verify-email-box .countdown-text {
+  font-size: 1.1rem;
+  color: #00ffff;
+  margin-bottom: 1.8rem;
+  animation: pulse 1.4s infinite;
+}
+
+/* 🔁 Resend Button */
+.resend-btn {
+  background: rgba(30, 30, 60, 0.4);
+  color: #00ffff;
+  border: 1px solid #00ffff55;
+  padding: 0.85rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.resend-btn:hover {
+  background: rgba(30, 30, 60, 0.6);
+  box-shadow: 0 0 16px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(0, 255, 255, 0.2);
+  color: #fff;
+  transform: scale(1.04);
+}
+
+/* ⬅️ Back to Signup Button */
+.back-btn {
+  margin-top: 1rem;
+  display: inline-block;
+  font-size: 0.95rem;
+  color: orange;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  color: #ffa733;
+  text-decoration: underline;
+}
+
+/* 🔄 Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}

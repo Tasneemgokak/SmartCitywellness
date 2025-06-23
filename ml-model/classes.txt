@@ -1,0 +1,16 @@
+Bio:Medi_waste
+Organic
+buildings
+cardboard
+clothes
+ewaste
+glass
+human
+metal
+nature
+paper
+plastic
+road
+shoes
+trash
+underwater_trash

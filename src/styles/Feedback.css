@@ -1,0 +1,108 @@
+.feedback-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.feedback-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.feedback-form label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.feedback-form input[type='number'],
+.feedback-form textarea,
+.feedback-form input[type='file'] {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+  background-color: #fdfdfd;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feedback-form input[type='number']::placeholder,
+.feedback-form textarea::placeholder {
+  color: #999;
+}
+
+.feedback-form input[type='number']:focus,
+.feedback-form textarea:focus,
+.feedback-form input[type='file']:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+
+.feedback-form textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.feedback-form button[type='submit'] {
+  width: 100%;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  color: white;
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 0.85rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.feedback-form button[type='submit']:hover {
+  background: linear-gradient(to right, #00f2fe, #4facfe);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.feedback-form button[type='submit']:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.success-msg {
+  text-align: center;
+  font-size: 1.1rem;
+  color: green;
+  padding: 1rem;
+  background: #e6ffee;
+  border: 1px solid #b2f2bb;
+  border-radius: 10px;
+}
+
+.star-rating {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star {
+  cursor: pointer;
+  transition: color 200ms;
+}
