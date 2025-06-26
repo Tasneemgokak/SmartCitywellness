@@ -1,7 +1,7 @@
 
 # City Wellness – Smart Reporting and Monitoring System
 
-A full-stack smart city web application that enables citizens to report waste-related issues using AI-powered waste classification, real-time geolocation, and media uploads. Built as a BCA final-year project to improve urban hygiene, transparency, and municipal response efficiency.
+A full-stack smart city web application that enables citizens to report waste-related issues using AI-powered waste classification, real-time geolocation, and media uploads. Built a project to improve urban hygiene, transparency, and municipal response efficiency.
 
 ---
 
