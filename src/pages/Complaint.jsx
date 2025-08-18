@@ -30,7 +30,7 @@ const Complaint = () => {
     }
 
     const complaintData = {
-      name: currentUser.displayName || 'Anonymous',
+      name: currentUser.displayName,
       email: currentUser.email,
       subject,
       description
@@ -50,7 +50,6 @@ const Complaint = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // alert(`Complaint submitted! ID: ${data.complaintId}`);
         setSubmitted(true);
         setSubject('');
         setDescription('');
@@ -101,7 +100,6 @@ const Complaint = () => {
             onChange={(e) => setDescription(e.target.value)}
             required
           />
-
           <button type="submit">Submit Complaint</button>
         </form>
       )}
